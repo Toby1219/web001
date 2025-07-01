@@ -1,0 +1,122 @@
+.form-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, .1);
+}
+
+.form-control,
+.form-select,
+.dropdown-toggle {
+    border-radius: 8px;
+    padding: 10px 15px;
+    border: 1px solid #ced4da;
+}
+
+.btn-primary {
+    border-radius: 8px;
+    padding: 12px 0;
+    font-weight: 600;
+    background-image: linear-gradient(to right, #0d6efd, #0b5ed7);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 108, 255, 0.2);
+}
+
+.input-group-text {
+    background-color: #e9ecef;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-left: none;
+}
+
+.password-toggle-icon {
+    cursor: pointer;
+}
+
+.btn-outline-primary {
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.btn-link {
+    text-decoration: none;
+    font-weight: 500;
+    color: #0d6efd;
+}
+
+.flag-icon,
+.crypto-icon {
+    width: 20px;
+    height: auto;
+    margin-right: 8px;
+    border-radius: 3px;
+}
+
+.country-option,
+.wallet-option {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+}
+
+.dropdown-toggle {
+    height: calc(1.5em + .75rem + 2px);
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-toggle #selectedCountryText,
+.dropdown-toggle #selectedWalletText {
+    flex-grow: 1;
+    margin-right: auto;
+}
+
+.input-group>.dropdown>.dropdown-toggle {
+    flex: 0 0 auto;
+    max-width: 150px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.dropdown-menu {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.scrollable-menu {
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.dropdown-item {
+    cursor: pointer;
+}
+
+.form-control.is-invalid,
+.dropdown-toggle.is-invalid {
+    border-color: #dc3545;
+}
+
+.invalid-feedback {
+    display: none;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 0.875em;
+    color: #dc3545;
+}
+
+.form-control.is-invalid~.invalid-feedback,
+.dropdown-toggle.is-invalid~.invalid-feedback {
+    display: block;
+}

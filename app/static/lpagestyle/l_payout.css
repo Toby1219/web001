@@ -1,0 +1,65 @@
+.clients-section {
+    background-color: #212529;
+    color: #ffffff;
+    padding: 8rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.clients-section.with-background {
+    background-image: url('tech.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: relative;
+    z-index: 1;
+}
+
+.clients-section.with-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: -1;
+}
+
+.clients-heading {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 2rem;
+    color: #ffffff;
+}
+
+.clients-number {
+    font-size: clamp(4rem, 12vw, 10rem);
+    font-weight: 800;
+    line-height: 1;
+    color: #0dcaf0;
+    margin-bottom: 1.5rem;
+}
+
+.clients-description {
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    line-height: 1.6;
+    color: #ced4da;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 767.98px) {
+    .clients-section {
+        padding: 5rem 0;
+    }
+    .clients-heading {
+        margin-bottom: 1.5rem;
+    }
+    .clients-number {
+        margin-bottom: 1rem;
+    }
+}

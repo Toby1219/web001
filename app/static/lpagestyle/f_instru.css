@@ -1,0 +1,26 @@
+.widget-section {
+    padding: 3rem 0;
+}
+.tradingview-widget-container {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08);
+    margin-bottom: 2rem;
+}
+.tradingview-widget-container__widget {
+    width: 100%;
+    height: 100%;
+}
+.tradingview-widget-copyright {
+    font-size: 0.8rem;
+    color: #6c757d;
+    padding: 0.5rem 1rem;
+    background-color: #f1f3f6;
+    text-align: right;
+    border-top: 1px solid #e9ecef;
+}
+.tradingview-widget-copyright .blue-text {
+    color: #0d6efd;
+    text-decoration: none;
+    font-weight: 500;
+}

@@ -1,0 +1,87 @@
+{% extends 'admin/base.html' %}
+{% block title %}
+Settings
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='userstyle/setting.css') }}">
+<main class="container py-4">
+    <section class="profile-header">
+        <div class="profile-icon-wrapper">
+            <img src="https://placehold.co/40x40/0d6efd/ffffff?text=A" alt="">
+            <input type="file" accept="image/*" id="profilePicUpload" style="display: none;">
+        </div>
+        <div class="profile-info">
+            <h2 class="text-capitalize">Admin</h2>
+    </section>
+    <section class="main-content-card">
+        <h3 class="card-header-title">Account Details</h3>
+        <ul class="nav nav-tabs nav-tabs-custom mb-3" id="accountDetailsTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="my-profile-tab" data-bs-toggle="tab" data-bs-target="#myProfile" type="button" role="tab" aria-controls="myProfile" aria-selected="true">My Profile</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="payment-account-tab" data-bs-toggle="tab" data-bs-target="#paymentAccount" type="button" role="tab" aria-controls="paymentAccount" aria-selected="false">Payment Account</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="security-tab" data-bs-toggle="tab" data-bs-target="#security" type="button" role="tab" aria-controls="security" aria-selected="false">Commission settings</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="accountDetailsTabContent">
+            <div class="tab-pane fade show active" id="myProfile" role="tabpanel" aria-labelledby="my-profile-tab">
+                <form method="POST" action="{{ url_for('admin.setting_admin' ) }}">
+                    {{ phone_form.hidden_tag() }}
+                    <div class="row mb-3">
+                        <div class="col-md-4" style="width: 50%;">
+                            <label for="email" class="form-label">Website Email</label>
+                            {{phone_form.email( id="email", type="text", class="form-control", value=data.email, style='border:1px solid grey; border-radius:10px;')}}
+                        </div>
+                        <div class="col-md-4">
+                            <label for="balance" class="form-label">Admin Balance</label>
+                            {{phone_form.balance( id="balance", type="text", class="form-control", value=data.balance, style='border:1px solid grey; border-radius:10px;')}}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phonew" class="form-label">Phone Number (Whatsapp)</label>
+                        {{phone_form.phonew(id='phonew', type='text', class='form-control', placeholder='Phone Number', style='border:1px solid grey; border-radius:10px;', value=data.PhoneNumberWhatsapp)}}
+                    </div>
+                    <div class="mb-3">
+                        <label for="phonet" class="form-label">Phone Number (Telegram)</label>
+                        {{phone_form.phonet(id='phonet', type='text', class='form-control', placeholder='Phone Number', style='border:1px solid grey; border-radius:10px;', value=data.PhoneNumberTelegram)}}
+                    </div>
+                    <button type="submit" class="btn save-btn" id="saveButton">SAVE</button>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="paymentAccount" role="tabpanel" aria-labelledby="payment-account-tab">
+                <div class="tab-pane fade show active" id="payment-account" role="tabpanel" aria-labelledby="payment-account-tab">
+                    {% for wallet in wallets  %}
+                    <div class="row mb-3 align-items-center g-2">
+                        <div class="col-md-4">
+                            <label style="font-size: medium;" for="{{wallet['name']}}Address walletLabel" class="form-label">{{wallet['name']}} ({{wallet['symbol']}})</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input style="border: 1px solid grey; border-radius: 10px;" type="text" class="form-control" data-wallet="{{wallet['name']}}" id="walletAddress" placeholder="Enter {{wallet['name']}} Wallet Address" value="{{wallet['address']}}">
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <button type="submit" class="btn save-btn" id="updateButton">Update Wallet Details</button>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="security" role="tabpanel" aria-labelledby="security-tab">
+                {% for k, v in refCom.items()  %}
+                <div class="row mb-3 align-items-center g-2">
+                    <div class="col-md-4">
+                        <label style="font-size: medium;" for="{{k}} walletLabel" class="form-label">{{k}}</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input style="border: 1px solid grey; border-radius: 10px;" type="text" class="form-control" data-val="{{k}}" id="ref_coms" placeholder="Enter {{k}} Wallet Address" value="{{v}}">
+                    </div>
+                </div>
+                {% endfor %}
+                <button type="submit" class="btn save-btn" id="updateButtonrefC">Update Commission Details</button>
+            </div>
+        </div>
+    </section>
+</main>
+<script type="text/javascript" src="{{ url_for('static', filename='admin/settin.js') }}"></script>
+{% endblock %}

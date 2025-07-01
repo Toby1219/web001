@@ -1,0 +1,195 @@
+{% extends 'admin/base.html' %}
+{% block title %}
+Admin
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='userstyle/transac.css') }}">
+
+    <main class="container">
+        <section class="account-section">
+            <h1 class="section-title text-start text-md-center mb-5">Admin Panel</h1>
+            <div class="row justify-content-center">
+                <div class="col-12 col-sm-6 col-md-6 col-lg-3 d-flex">
+                    <div class="account-card flex-grow-1">
+                        <i class="bi-credit-card account-card-icon"></i>
+                        <h3 class="account-card-title">Balance</h3>
+                        <p class="account-card-amount">${{user.balance}}</p>
+                    </div>
+                </div>
+                
+                <div class="col-12 col-sm-6 col-md-6 col-lg-3 d-flex">
+                    <div class="account-card flex-grow-1">
+                        <i class="bi bi-person-lines-fill account-card-icon"></i>
+                        <a href="{{ url_for('admin.admin_users') }}" class="text-decoration-none">                            <h3 class="account-card-title">Users Details</h3>
+                        <p class="account-card-amount">{{total[0]}} users</p>
+                        </a>
+                    </div>
+                    
+                </div>
+                
+                <div class="col-12 col-sm-6 col-md-6 col-lg-3 d-flex" id="box">
+                    <div class="account-card flex-grow-1" id="account-card-info" data-query="d">
+                        <i class="bi bi-box-arrow-in-down account-card-icon"></i>
+                        <a href="{{ url_for('admin.pending_admin', p='d' ) }}" class="text-decoration-none">
+                            <h3 class="account-card-title">Pending Deposit</h3>
+                            <p class="account-card-amount">{{total[1]}}</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 col-lg-3 d-flex" id="box">
+                
+                    <div class="account-card flex-grow-1" id="account-card-info" data-query="w">
+                        <i class="bi bi-box-arrow-in-up account-card-icon"></i>
+                        <a href="{{ url_for('admin.pending_admin', p='w' ) }}" class="text-decoration-none">
+                            <h3 class="account-card-title">Pending Withdrawal</h3>
+                            <p class="account-card-amount">{{total[2]}}</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {% if transaction %}
+        <section class="transactions-table-section">
+            <div class="table-responsive">
+                <table class="table table-hover transactions-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Ammount</th>
+                            <th>Status</th>
+                            <th>Plan</th>
+                            <th>Time - Date</th>
+                        </tr>
+                    </thead>
+                    {% for tx in transaction %}
+                    <tbody>
+                        <tr data-name="{{tx['username']}}" data-time="{{tx['time']}}" data-date="{{tx['date']}}" data-amount="{{tx['ammount']}}"
+                            data-status="tx['status']" data-wa="{{tx['wa']}}" data-wt="{{tx['wt']}}" data-plan="{{tx['plan']}}"
+                            data-id="{{tx['id']}}" data-to="{{tx['to']}}" data-tt="{{tx['transac_type'].capitalize()}}"
+                            data-r="{{tx['remark']}}">
+                            <td>{{tx['username']}}</td>
+                            <td>USD {{tx['ammount']}}</td>
+                            <td><span
+                                    class="status-badge status-{{tx['status'].lower()}}">{{tx.status.capitalize()}}</span>
+                            </td>
+                            <td>{{tx['plan']}}</td>
+                            <td>{{tx['time']}} - {{tx['date']}}</td>
+                        </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+        </section>
+
+        {% else %}
+        <section class="no-transactions-section">
+            <div class="no-transactions-illustration">
+                <i class="bi bi-file-earmark-text-fill document-icon"></i>
+                <i class="bi bi-search magnifying-glass-icon"></i>
+                <span class="question-mark">?</span>
+            </div>
+            <p class="no-transactions-text">No transactions can be found</p>
+        </section>
+        {% endif %}
+    </div>
+</main>
+
+<div class="modal fade" id="receiptModal" tabindex="-1" aria-labelledby="receiptModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="background-color: rgb(59, 85, 95); color: whitesmoke;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="receiptModalLabel">Transaction Receipt</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Transaction ID:</strong> <span id="receiptId"></span></p>
+                <p><strong>Time and date:</strong> <span id="receiptTime"></span> <span id="receiptDate"></span></p>
+                <p><strong>Name:</strong> <span id="receiptName"></span></p>
+                <p><strong>Amount:</strong> <input id="receiptAmount"></p>
+                <p><strong>Plan:</strong> <input id="receiptPlan"></p>
+                <p><strong>Wallet Type:</strong> <span id="receiptWalletType"></span></p>
+                <p><strong>Wallet Address:</strong> <span id="receiptWalletAddress"></span></p>
+                <p><strong>To:</strong> <span id="receiptTo"></span></p>
+                <p><strong>Status:</strong> <span id="receiptStatus"></span></p>
+                <p><strong>Transaction Type:</strong> <span id="receiptTransacType"></span></p>
+                <p><strong>Remark:</strong> <span id="receiptTransacRemark"></span></p>
+                
+                <button type="button" class="btn btn-success" id="AcceptPayment" style="min-width: 100px;">Accept Payment</button>
+                <button type="button" class="btn btn-danger" id="DeclinePayment" style="min-width: 100px;">Decline Payment</button>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="min-width: 100px;" >Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmationModalLabel">Confirm Action</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <i class="bi bi-question-circle-fill text-info mb-3" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                <p class="lead" style="font-size: 1.2rem; font-weight: 500; color: #343a40;">Are you sure you want to proceed with <span id="n0" style="font-weight: bold;"></span> transaction?</p>
+                <p>Amount: <strong id="confirmWithdrawalAmount"></strong></p>
+                <p><strong>Remark:</strong><input class="form-control" style="border-radius: 10px;" id="newRemarktext"></p>
+            </div>
+            
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="min-width: 100px;">Cancel</button>
+                <button type="button" class="btn btn-primary" id="confirmBtn" style="min-width: 100px;">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="successModalLabel">Accept Transaction Successful</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <i class="bi bi-check-circle-fill text-success mb-3" style="font-size: 3rem; margin-bottom: 1rem; color: #4CAF50 !important;"></i>
+                <p class="lead" style="font-size: 1.2rem; font-weight: 500; color: #343a40;">You have Successfully accept <span id="n1" style="font-weight: bold;"></span> payment</p>
+                <p>Database would be updated and user will be notified.</p>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="OkayBtn" style="min-width: 100px;">Okay</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="errorModalLabel">Declined Transaction</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center" style="font-size: 3rem; margin-bottom: 1rem;">
+                <i class="bi bi-x-circle-fill text-danger mb-3" style="font-size: 3rem; margin-bottom: 1rem; color: #F44336 !important;"></i>
+                <p class="lead" style="font-size: 1.2rem; font-weight: 500; color: #343a40;"><span id="n2" style="font-weight: bold;"></span> transaction have been Declined</p>
+                
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="min-width: 100px;">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <svg class="svg-connector-container">
+            <path id="connectorPath" class="connector-line"></path>
+        </svg>
+
+    </main>
+<script type="text/javascript"  src="{{ url_for('static', filename='admin/admin.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,180 @@
+{% extends 'admin/base.html' %}
+{% block title %}
+Users
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='admin/user.css') }}">
+<main class="container py-4">
+    <section class="header-section">
+        <h1 class="header-title text-center">Users on Website</h1>
+    </section>
+    {% if data %}
+    <section class="transactions-table-section">
+        <div class="table-responsive">
+            <table class="table table-hover users-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Invested <br>----<br> Withdrawls</th>
+                        <th>Balance</th>
+                        <th>Referral count</th>
+                        <th>Referral Code</th>
+                        <th>Time  <br>------<br> Date</th>
+                    </tr>
+                </thead>
+                {% for tx in data %}
+                <tbody>
+                    <tr data-id="{{tx['id']}}" data-time="{{tx['time']}}" data-date="{{tx['date']}}" 
+                        data-balnce="{{tx['balance']}}" data-wa="{{tx['WalletAddress']}}" 
+                        data-wt="{{tx['WalletType']}}" data-refcount="{{tx['ref_count']}}"
+                        data-refcode="{{tx['referral_code']}}" data-refby="{{tx['ref_by']}}"
+                        data-enarned="{{tx['earned']}}" data-invest="{{tx['invested']}}" 
+                        data-status="Active Trans status" data-name="{{tx['username']}}" 
+                        data-email="{{tx['email']}}" data-phone="{{tx['phone']}}">
+                        <td>{{tx['username']}}</td>
+                        <td colspan="1">USD {{tx['invested']}} <br>-----<br> USD {{tx['withdrawn']}}</td>
+                        <td>USD {{tx['balance']}}</td>
+                        <td>{{tx['referral_code']}}</td>
+                        <td><a href="#">{{tx['referral_code']}}</a></td>
+                        <td>{{ tx['time'] }} <br>------<br> {{ tx['date'] }}</td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+        </div>
+    </section>
+    {% else %}
+    <section class="no-transactions-section">
+        <div class="no-transactions-illustration">
+            <i class="bi bi-file-earmark-text-fill document-icon"></i>
+            <i class="bi bi-search magnifying-glass-icon"></i>
+            <span class="question-mark">?</span>
+        </div>
+        <p class="no-transactions-text">No Users can be found</p>
+    </section>
+    {% endif %}
+    </div>
+</main>
+<div class="modal fade" id="userEditModal" tabindex="-1" aria-labelledby="userEditModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="userEditModalLabel">User: <span id="editUserName"></span></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="userEditForm">
+                    <div class="user-edit-form-grid">
+                        <div class="form-group">
+                            <label for="editUserNameInput">Name:</label>
+                            <input type="text" class="form-control" id="editUserNameInput" name="username" readonly disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="editUserEmail">Email:</label>
+                            <input type="email" class="form-control" id="editUserEmail" readonly disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="editUserPhone">Phone Number:</label>
+                            <input type="text" class="form-control" id="editUserPhone" readonly disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="editUserPasswrd">Password:</label>
+                            <input type="text" class="form-control" id="editUserPasswrd" name="passwrd" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editUserBalance">Balance:</label>
+                            <input type="text" class="form-control" id="editUserBalance" name="bal" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editUserInvested">Invested:</label>
+                            <input type="text" class="form-control" id="editUserInvested" name="invest" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editUserEarned">Earned:</label>
+                            <input type="text" class="form-control" id="editUserEarned" name="earned" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editUserPending">Pending (recent):</label>
+                            <input type="text" class="form-control" id="editUserPending" name="pending" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editUserPlan"> Active Plan:</label>
+                            <input type="text" class="form-control" id="editUserPlan" name="activeplan" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editUserWalletAddress"> Wallet Address:</label>
+                            <input type="text" class="form-control" id="editUserWalletAddress" name="userwallet" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editUserWalletType"> Wallet Type:</label>
+                            <input type="text" class="form-control" id="editUserWalletType" name="userwallettype" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editUserRefEarnings"> Referral Earnings:</label>
+                            <input type="text" class="form-control" id="editUserRefEarnings" name="userrefearns" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editUserReferralCount">Referral Count:</label>
+                            <input type="text" class="form-control" id="editUserReferralCount" readonly disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="editUserReferralBY">Referred By:</label>
+                            <input type="text" class="form-control" id="editUserReferralBY" readonly disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="editUserReferralCode">Referral Code:</label>
+                            <input type="text" class="form-control" id="editUserReferralCode" readonly disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="editUserID" class="d-none">Id</label>
+                            <input type="text" class="form-control d-none" id="editUserID"  name="id" readonly disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="editUserID" class="d-none">Id</label>
+                            <input type="text" class="form-control d-none" id="editUserID"  name="id" readonly disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="editU" class="d-none"></label>
+                            <input type="text" class="form-control d-none" id="editU"  name="id" readonly disabled>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary p-1 w-50" id="SaveBtn">Save Changes</button>
+                        </div>
+                        <div class="form-group">
+                            <p class="text-bg-warning small" id="totalTransac"></p>
+                            <p class="text">Take Action for transaction</p>
+                            <button class="btn btn-success" id="tactionBtn">Tranaction Actions</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="confirmChangesModal" tabindex="-1" aria-labelledby="confirmChangesModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmChangesModalLabel">Confirm Changes</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <i class="bi bi-question-circle-fill text-info mb-3"></i>
+                <p class="lead">Do you want to confirm these changes?</p>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="NoBtn">No</button>
+                <button type="button" class="btn btn-primary" id="finalizeEditBtn">Yes, Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="{{ url_for('static', filename='admin/user.js') }}"></script>
+{% endblock %}
+
+
+

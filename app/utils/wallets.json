@@ -1,0 +1,107 @@
+[
+    {
+        "name": "Bitcoin",
+        "symbol": "BTC",
+        "address": "11100000"
+    },
+    {
+        "name": "Ethereum",
+        "symbol": "ETH",
+        "address": "3000"
+    },
+    {
+        "name": "Tether USDT ERC20",
+        "symbol": "USDT",
+        "address": "9999999"
+    },
+    {
+        "name": "Tether USDT TRC20",
+        "symbol": "USDT",
+        "address": "22222222222222222222222222"
+    },
+    {
+        "name": "Binance Coin BNB - BEP2",
+        "symbol": "BNB",
+        "address": ""
+    },
+    {
+        "name": "Binance Smart Chain",
+        "symbol": "BNB",
+        "address": ""
+    },
+    {
+        "name": "Doge coin",
+        "symbol": "DOGE",
+        "address": ""
+    },
+    {
+        "name": "Litecoin",
+        "symbol": "LTC",
+        "address": ""
+    },
+    {
+        "name": "Shiba Inu",
+        "symbol": "SHIB",
+        "address": ""
+    },
+    {
+        "name": "Ripple XRP",
+        "symbol": "XRP",
+        "address": ""
+    },
+    {
+        "name": "Cardano",
+        "symbol": "ADA",
+        "address": ""
+    },
+    {
+        "name": "Polkadot",
+        "symbol": "DOT",
+        "address": ""
+    },
+    {
+        "name": "Solana",
+        "symbol": "SOL",
+        "address": ""
+    },
+    {
+        "name": "Monero XMR",
+        "symbol": "XMR",
+        "address": ""
+    },
+    {
+        "name": "Tron",
+        "symbol": "TRX",
+        "address": ""
+    },
+    {
+        "name": "Zcash",
+        "symbol": "ZEC",
+        "address": ""
+    },
+    {
+        "name": "Dash",
+        "symbol": "DASH",
+        "address": ""
+    },
+    {
+        "name": "Cosmos",
+        "symbol": "ATOM",
+        "address": ""
+    },
+    {
+        "name": "Avalanche",
+        "symbol": "AVAX",
+        "address": ""
+    },
+    {
+        "name": "VeChain",
+        "symbol": "VET",
+        "address": ""
+    },
+    {
+        "name": "NEO",
+        "symbol": "NEO",
+        "address": ""
+    }
+]

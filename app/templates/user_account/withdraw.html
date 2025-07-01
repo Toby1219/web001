@@ -1,0 +1,120 @@
+{% extends 'user_account/base.html' %}
+{% block title %}
+withdrawal
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='userstyle/withdraw.css') }}">
+<main class="container py-4">
+    <section class="header-section position-relative">
+        <h1 class="header-title">Withdraw</h1>
+        <a href="{{ url_for('views.transaction' ) }}" class="btn my-deposits-btn d-none d-md-block">Transaction history</a>
+        <div class="header-line"></div>
+    </section>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-5 mx-auto">
+                <div class="available-funds-card text-center">
+                    <span class="badge text-uppercase">Available funds</span>
+                    <i class="bi bi-currency-dollar available-funds-icon"></i>
+                    <p class="available-funds-amount">USD {{data['balance']}}</p>
+                    <p class="available-funds-label">Balance</p>
+                </div>
+            </div>
+            <div class="col-12 col-lg-5 mx-auto">
+                <div class="available-funds-card text-center">
+                    <span class="badge text-uppercase">Total Withdrawn funds</span>
+                    <i class="bi bi-currency-dollar available-funds-icon"></i>
+                    <p class="available-funds-amount">USD {{data['withdrawn']}}</p>
+                    <p class="available-funds-label">Funds Withdrawed</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="user-info-block ">
+        <p class="mb-1"><strong>Username:</strong> {{data["username"]}} </p>
+        <p class="mb-1"><strong>Wallet Type:</strong> {{data["walletType"]}}</p>
+        <p class="mb-0"><strong>Wallet Address:</strong> {{data["walletAddress"]}}</p>
+        <button class="btn user-info-action-btn mt-2"><a href="{{ url_for('views.settings' ) }}" class="text-decoration-none" style="color: inherit;">Update Info</a></button>
+        <p class="user-info-text-below-btn mb-0">Click to change your wallet details.</p>
+    </div>
+    <section class="payment-method-section">
+        <h3 class="section-title">Withdraw </h3>
+        <form id="paymentMethodForm">
+            <div class="mb-3">
+                <label for="withdrawalAmount" class="form-label">Enter amount</label>
+                <input type="number" name="amt" id="withdrawalAmount" class="form-control" placeholder="Enter amount" min="0.01" step="0.01" style="text-align: center;">
+            </div>
+            <div class="mb-3">
+                <label for="paymentMethodSelect" class="form-label">Wallet Type</label>
+                <input type="text" class="form-control" id="accountInput1" name="w_type" placeholder="Enter wallet address or account number" value="{{data['walletType']}}" readonly disabled>
+            </div>
+            <div class="mb-3">
+                <label for="accountInput" class="form-label">Wallet Address</label>
+                <input type="text" class="form-control" id="accountInput2" name="w_address" placeholder="Enter wallet address or account number" value="{{data['walletAddress']}}" readonly disabled>
+            </div>
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary" id="proceedToWithdrawBtn" disabled>Proceed to Withdraw</button>
+            </div>
+            <br><br>
+            <span class="text-warning-emphasis"><small>If you want to change your wallet address and type go to settings</small></span>
+        </form>
+    </section>
+    </div>
+</main>
+<div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmationModalLabel">Confirm Withdrawal</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <i class="bi bi-question-circle-fill text-info mb-3"></i>
+                <p class="lead">Are you sure you want to proceed with this withdrawal?</p>
+                <p>Amount: <strong id="confirmWithdrawalAmount"></strong></p>
+                <p>Wallet Type: <strong id="confirmPaymentMethod"></strong></p>
+                <p>Wallet Address: <strong id="confirmAccountDetails"></strong></p>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="confirmWithdrawalBtn">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="successModalLabel">Withdrawal Successful</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <i class="bi bi-check-circle-fill text-success mb-3"></i>
+                <p class="lead">Your withdrawal request has been successfully submitted!</p>
+                <p>It will be processed shortly.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="errorModalLabel">Withdrawal Failed</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <i class="bi bi-x-circle-fill text-danger mb-3"></i>
+                <p class="lead">Insufficient funds or an error occurred.</p>
+                <p>Please check your available balance and try again.</p>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="{{ url_for('static', filename='userstyle/Withdraw.js') }}"></script>
+{% endblock %}

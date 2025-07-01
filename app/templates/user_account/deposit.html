@@ -1,0 +1,147 @@
+{% extends 'user_account/base.html' %}
+{% block title %}
+Deposit
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='userstyle/deposit.css') }}">
+<main class="container py-4">
+    <section class="header-section position-relative">
+        <h1 class="header-title">Deposits</h1>
+        <a href="{{ url_for('views.transaction' ) }}" class="btn my-deposits-btn d-none d-md-block">Transaction history</a>
+        <div class="header-line"></div>
+    </section>
+    <div class="user-info-block ">
+        <p class="mb-1"><strong>Username:</strong> {{data["username"]}} </p>
+        <p class="mb-1"><strong>Wallet Type:</strong> {{data["walletType"]}}</p>
+        <p class="mb-0"><strong>Wallet Address:</strong> {{data["walletAddress"]}}</p>
+        <br>
+        <p class="mb-0"><strong>TO</strong></p>
+        <br>
+        <p class="mb-1"><strong>Wallet Type:</strong> {{data["a_w_type"]}}</p>
+        <p class="mb-0"><strong>Wallet Address:</strong> {{data["a_w_address"]}}</p>
+        <button class="btn user-info-action-btn mt-2"><a href="{{ url_for('views.settings' ) }}" class="text-decoration-none" style="color: inherit;">Update Info</a></button>
+        <p class="user-info-text-below-btn mb-0">Click to change your wallet details.</p>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-7">
+            <section class="investment-plan-section">
+                <h2 class="plan-title">Select your investment plan</h2>
+                <div class="row">
+                    <div class="col-12 col-sm-6 mb-3 d-flex">
+                        <div class="investment-card flex-grow-1" data-plan-id="plan1" data-plan-name="Beginners Plan" data-plan-percent="6" data-plan-hours="15" data-min-amount="50.00" data-max-amount="499.00" data-refby="{{data['ref_by']}}" data-refcode="{{data['referral_code']}}">
+                            <div>BEGINNERS Plan</div>
+                            <div>
+                                <h3 class="plan-percentage">6.00 %</h3>
+                                <p class="plan-period">15 hours every 15 hours</p>
+                            </div>
+                            <div>
+                                <p class="plan-price-range"><span class="plan-currency">USD</span> 50.00 - <span class="plan-currency">USD</span> 499.00</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 mb-3 d-flex">
+                        <div class="investment-card flex-grow-1" data-plan-id="plan2" data-plan-name="Beginners Pro" data-plan-percent="8" data-plan-hours="24" data-min-amount="500.00" data-max-amount="1499.00" data-refby="{{data['ref_by']}}" data-refcode="{{data['referral_code']}}">
+                            <div>BEGINNERS PRO</div>
+                            <div>
+                                <h3 class="plan-percentage">8.00 %</h3>
+                                <p class="plan-period">24 hours every 24 hours</p>
+                            </div>
+                            <div>
+                                <p class="plan-price-range"><span class="plan-currency">USD</span> 500.00 - <span class="plan-currency">USD</span> 1,499.00</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 mb-3 d-flex">
+                        <div class="investment-card flex-grow-1" data-plan-id="plan2" data-plan-name="Promo Plan" data-min-amount="3000.00" data-plan-percent="10" data-plan-hours="5" data-max-amount="9000.00" data-refby="{{data['ref_by']}}" data-refcode="{{data['referral_code']}}">
+                            <div>PROMO PLAN</div>
+                            <div>
+                                <h3 class="plan-percentage">10.00 %</h3>
+                                <p class="plan-period">5 hours every 5 hours</p>
+                            </div>
+                            <div>
+                                <p class="plan-price-range"><span class="plan-currency">USD</span> 3,000.00 - <span class="plan-currency">USD</span> 9,000.00</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 mb-3 d-flex">
+                        <div class="investment-card flex-grow-1" data-plan-id="plan2" data-plan-name="Professional Plan" data-plan-percent="15" data-plan-hours="36" data-min-amount="1500.00" data-max-amount="15000.00" data-refby="{{data['ref_by']}}" data-refcode="{{data['referral_code']}}">
+                            <div>PROFESSIONAL PLAN</div>
+                            <div>
+                                <h3 class="plan-percentage">15.00 %</h3>
+                                <p class="plan-period">36 hours every 36 hours</p>
+                            </div>
+                            <div>
+                                <p class="plan-price-range"><span class="plan-currency">USD</span> 1,500.00 - <span class="plan-currency">USD</span> 15,000.00</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 mb-3 d-flex">
+                        <div class="investment-card flex-grow-1" data-plan-id="plan2" data-plan-name="Expert Trade" data-plan-percent="25" data-plan-hours="48" data-min-amount="1500.00" data-max-amount="50000" data-refby="{{data['ref_by']}}" data-refcode="{{data['referral_code']}}">
+                            <div>EXPERT TRADE</div>
+                            <div>
+                                <h3 class="plan-percentage">25.00 %</h3>
+                                <p class="plan-period">48 hours every 48 hours</p>
+                            </div>
+                            <div>
+                                <p class="plan-price-range"><span class="plan-currency">USD</span> 1,500.00 - <span class="plan-currency">USD</span> 50,000</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="amount-input-group">
+        <label for="depositAmount" class="form-label">Enter Deposit Amount (USD)</label>
+        <input type="number" id="depositAmount" class="form-control" placeholder="e.g., 100.00" min="0.01" step="0.01">
+        <div id="amountValidationFeedback" class="invalid-feedback d-none text-center"></div>
+    </div>
+    <div class="proceed-btn-container">
+        <button class="btn proceed-btn" id="proceedButton" disabled>Proceed</button>
+    </div>
+</main>
+<div class="modal fade" id="paymentConfirmationModal" tabindex="-1" aria-labelledby="paymentConfirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="paymentConfirmationModalLabel">Confirm Payment</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="" method="post"></form>
+            <div class="modal-body">
+                <p>You are about to make a payment for the selected investment plan. Please confirm the details:</p>
+                <p><strong>Selected Plan:</strong> <span id="modalSelectedPlanName"></span></p>
+                <p><strong>Deposit Amount:</strong> <span id="modalDepositAmount"></span></p>
+                <p><strong>Wallet Address:</strong> <span id="modalWalletAddress">{{data["walletAddress"]}}</span></p>
+                <p><strong>Wallet Type:</strong> <span id="modalWalletType">{{data["walletType"]}}</span></p>
+                <p><strong>Name:</strong> <span id="modalName">{{data["username"]}}</span></p>
+                <p><strong>To</strong></p>
+                <p><strong>Wallet Address:</strong> <span id="modalWalletAddressAdmin">{{data["a_w_address"]}}</span></p>
+                <p><strong>Wallet Type:</strong> <span id="modalWalletTypeAdmin">{{data["a_w_type"]}}</span></p>
+                <p class="mt-3">Do you want to proceed to make payment?</p>
+                <p><strong class="text-danger text-capitalize">Note: Please ensure you pay to the right wallet address</strong> </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="confirmPaymentBtn">Okay</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="paymentConfirmedModal" tabindex="-1" aria-labelledby="paymentConfirmedModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="paymentConfirmedModalLabel">Payment Status</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <i class="bi bi-check-circle-fill text-success" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                <p class="lead">Confirmed! We are reviewing your payment.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="{{ url_for('static', filename='userstyle/deposit.js') }}"></script>
+{% endblock %}

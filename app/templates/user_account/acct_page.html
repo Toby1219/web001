@@ -1,0 +1,154 @@
+{% extends 'user_account/base.html' %}
+{% block title %}
+{{data["username"].capitalize()}} Account
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='userstyle/account.css') }}">
+<main class="container">
+    <section class="account-section">
+        <h1 class="section-title text-start text-md-center mb-5">Account</h1>
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-6 col-md-6 col-lg-3 d-flex">
+                <div class="account-card flex-grow-1">
+                    <i class="bi-credit-card account-card-icon"></i>
+                    <h3 class="account-card-title">Balance</h3>
+                    <p class="account-card-amount">${{data['balance']}}</p>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-6 col-lg-3 d-flex">
+                <div class="account-card flex-grow-1">
+                    <i class="bi bi-arrow-down-left account-card-icon"></i>
+                    <h3 class="account-card-title">Earned</h3>
+                    <p class="account-card-amount">${{data['earned']}}</p>
+                    <p class="fs-6 fst-italic">{{tr['plan']}} {{tr['plan_perc']}}% </p>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-6 col-lg-3 d-flex">
+                <div class="account-card flex-grow-1">
+                    <i class="bi bi-graph-up-arrow account-card-icon"></i>
+                    <h3 class="account-card-title">Invested</h3>
+                    <p class="account-card-amount">${{data['invested']}}</p>
+                    <p class="fs-6 fst-italic">{{tr['plan']}}</p>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-6 col-lg-3 d-flex">
+                <div class="account-card flex-grow-1">
+                    <i class="bi bi-wallet2 account-card-icon"></i>
+                    <h3 class="account-card-title">Pending deposits</h3>
+                    <p class="account-card-amount">${{data['active_deposits']}}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <h1 class="text-start mb-4">Information</h1>
+    <div class="row justify-content-start align-items-center">
+        <div class="col-12 col-lg-5">
+            <div class="info-card">
+                <div class="info-item">
+                    <span class="info-label">E-mail:</span>
+                    <span class="info-value">{{data["email"]}}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Your Referrer Code:</span>
+                    <span class="info-value">{{data['referral_code']}}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Referrers:</span>
+                    <span class="info-value">{{data['ref_count']}}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Referrers earings:</span>
+                    <span class="info-value">${{data['ref_earings']}}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Referrer Link:</span>
+                    <span class="info-value"
+                        style="border: 1px solid grey; border-radius: 10px; padding: 10px; width: 100%;">
+                        <a href="{{referral_link}}" target="_blank">
+                            {{referral_link}}
+                        </a>
+                    </span>
+                </div>
+                {% if data['ref_by'] %}
+                <div class="info-item">
+                    <span class="info-label">Referrers Id:</span>
+                    <span class="info-value">{{data['ref_by']}}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Referrers Name:</span>
+                    <span class="info-value">{{ref_n}}</span>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-lg-5 offset-lg-2 d-flex justify-content-center">
+            <div class="turnover-card flex-grow-1">
+                <h3 class="turnover-title">Turnover of the fund</h3>
+                <span class="turnover-total">Total</span>
+                <p class="turnover-amount">$3517949.45</p>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="registrationSuccessModal" tabindex="-1" aria-labelledby="registrationSuccessModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <i class="fas fa-check-circle checkmark-icon"></i>
+                    <h3 class="modal-title" id="registrationSuccessModalLabel">Registration Successful!</h3>
+                    <p class="modal-text">Preparing your account...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <svg class="svg-connector-container">
+        <path id="connectorPath" class="connector-line"></path>
+    </svg>
+    <section class="widget-section bg-light rounded-3 shadow-sm">
+        <h2 class="text-center mb-4 pt-4">Real-time Bitcoin Chart</h2>
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="tradingview-widget-container">
+                        <div id="tradingview_full_chart" class="tradingview-widget-container__widget"></div>
+                        <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                        <script type="text/javascript">
+                            new TradingView.widget({
+                                "width": "100%",
+                                "height": 610,
+                                "symbol": "BINANCE:BTCUSDT",
+                                "interval": "D",
+                                "timezone": "Etc/UTC",
+                                "theme": "dark",
+                                "style": "1",
+                                "locale": "en",
+                                "toolbar_bg": "#f1f3f6",
+                                "enable_publishing": false,
+                                "allow_symbol_change": true,
+                                "watchlist": [
+                                    "BINANCE:BTCUSDT",
+                                    "BINANCE:ETHUSDT",
+                                    "BINANCE:BNBUSDT",
+                                    "BINANCE:SOLUSDT",
+                                    "BINANCE:XRPUSDT",
+                                    "BINANCE:SHIBUSDT",
+                                    "BINANCE:ADAUSDT",
+                                    "BINANCE:DOGEUSDT",
+                                    "BINANCE:DOTUSDT",
+                                    "BINANCE:AVAXUSDT",
+                                    "BINANCE:LTCUSDT"
+                                ],
+                                "hotlist": true,
+                                "calendar": true,
+                                "container_id": "tradingview_full_chart"
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script type="text/javascript" src="{{ url_for('static', filename='userstyle/account.js') }}"></script>
+</main>
+{% endblock %}

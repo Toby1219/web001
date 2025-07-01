@@ -1,0 +1,137 @@
+{% extends 'user_account/base.html' %}
+{% block title %}
+Settings
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='userstyle/setting.css') }}">
+<main class="container py-4">
+    <section class="profile-header">
+        <div class="profile-icon-wrapper">
+            <img src="https://placehold.co/40x40/0d6efd/ffffff?text={{ data['username'][0].upper()}} {{ data['username'][-1].upper()}} " alt="">
+            <input type="file" accept="image/*" id="profilePicUpload" style="display: none;">
+        </div>
+        <div class="profile-info">
+            <h2 class="text-capitalize">{{data['username']}}</h2>
+            <p>{{data['email']}}</p>
+        </div>
+    </section>
+    <section class="main-content-card">
+        <h3 class="card-header-title">Account Details</h3>
+        <ul class="nav nav-tabs nav-tabs-custom mb-3" id="accountDetailsTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="my-profile-tab" data-bs-toggle="tab" data-bs-target="#myProfile" type="button" role="tab" aria-controls="myProfile" aria-selected="true">My Profile</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="payment-account-tab" data-bs-toggle="tab" data-bs-target="#paymentAccount" type="button" role="tab" aria-controls="paymentAccount" aria-selected="false">Payment Account</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="security-tab" data-bs-toggle="tab" data-bs-target="#security" type="button" role="tab" aria-controls="security" aria-selected="false">Security</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="accountDetailsTabContent">
+            <div class="tab-pane fade show active" id="myProfile" role="tabpanel" aria-labelledby="my-profile-tab">
+                <form method="POST" action="">
+                    <div class="row mb-3">
+                        <div class="col-md-4" style="width: 60%;">
+                            <label for="firstName" class="form-label">User name</label>
+                            <input type="text" class="form-control" value="{{data['username']}}" readonly disabled>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="referralCode" class="form-label">Referral Code</label>
+                            <input type="text" class="form-control" value="{{data['referral_code']}}" readonly disabled>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input style="border: 1px solid rgba(44, 44, 44, 0.308); border-radius: 10px;" type="email" class="form-control" id="email" name="e" value="{{data['email']}}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone Number</label>
+                        <input style="border: 1px solid rgba(44, 44, 44, 0.308); border-radius: 10px;" type="text" class="form-control" id="phonen" name="pn" value="{{data['phone']}}">
+                    </div>
+                    <button type="submit" class="btn save-btn" id="saveButton">SAVE</button>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="paymentAccount" role="tabpanel" aria-labelledby="payment-account-tab">
+                {{ form_wallet.hidden_tag() }}
+                <section class="payment-method-section">
+                    <form method="POST" id="paymentMethodForm">
+                        <div class="mb-3">
+                            <label for="walletTypeHiddenInput" class="form-label visually-hidden">Wallet Type</label>
+                            {{form_wallet.walletType(id='walletTypeHiddenInput', type='hidden', required=True)}}
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle w-100 text-start d-flex justify-content-between align-items-center" type="button" id="walletTypeDropdownToggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span id="selectedWalletTypeText">{{ data['walletType'] }}</span>
+                                </button>
+                                <ul class="dropdown-menu scrollable-menu" aria-labelledby="walletTypeDropdownToggle">
+                                    <li><a class="dropdown-item" data-value="Bitcoin"><img src="{{ url_for('static', filename='crptoicos/bitcoin_196543.png') }}" alt="Bitcoin icon" width="20" height="20">Bitcoin</a></li>
+                                    <li><a class="dropdown-item" data-value="Ethereum"><img src="{{ url_for('static', filename='crptoicos/ethereum_15301597.png') }}" alt="Bitcoin icon" width="20" height="20">Ethereum</a></li>
+                                    <li><a class="dropdown-item" data-value="Tether USDT ERC20"><img src="{{ url_for('static', filename='crptoicos/tether.png') }}" alt="Bitcoin icon" width="20" height="20">Tether USDT ERC20</a></li>
+                                    <li><a class="dropdown-item" data-value="Tether USDT TRC20"><img src="{{ url_for('static', filename='crptoicos/tether.png') }}" alt="Bitcoin icon" width="20" height="20">Tether USDT TRC20</a></li>
+                                    <li><a class="dropdown-item" data-value="TBinance Coin BNB - BEP2"><img src="{{ url_for('static', filename='crptoicos/binance.png') }}" alt="Bitcoin icon" width="20" height="20">Binance Coin BNB - BEP2</a></li>
+                                    <li><a class="dropdown-item" data-value="Binance Smart Chain"><img src="{{ url_for('static', filename='crptoicos/bnb_smart_chain.png') }}" alt="Bitcoin icon" width="20" height="20">Binance Smart Chain</a></li>
+                                    <li><a class="dropdown-item" data-value="Doge coin"><img src="{{ url_for('static', filename='crptoicos/dogecoin_15301572.png') }}" alt="Bitcoin icon" width="20" height="20">Doge coin</a></li>
+                                    <li><a class="dropdown-item" data-value="Litecoin"><img src="{{ url_for('static', filename='crptoicos/litecoin.png') }}" alt="Bitcoin icon" width="20" height="20">Litecoin</a></li>
+                                    <li><a class="dropdown-item" data-value="Shiba Inu"><img src="{{ url_for('static', filename='crptoicos/Shiba_Inu.png') }}" alt="Bitcoin icon" width="20" height="20">Shiba Inu</a></li>
+                                    <li><a class="dropdown-item" data-value="Ripple XRP"><img src="{{ url_for('static', filename='crptoicos/ripple.png') }}" alt="Bitcoin icon" width="20" height="20">Ripple XRP</a></li>
+                                    <li><a class="dropdown-item" data-value="Cardano"><img src="{{ url_for('static', filename='crptoicos/cardano.png') }}" alt="Bitcoin icon" width="20" height="20">Cardano</a></li>
+                                    <li><a class="dropdown-item" data-value="Polkadot"><img src="{{ url_for('static', filename='crptoicos/polkadot.png') }}" alt="Bitcoin icon" width="20" height="20">Polkadot</a></li>
+                                    <li><a class="dropdown-item" data-value="Solana"><img src="{{ url_for('static', filename='crptoicos/sol.png') }}" alt="Bitcoin icon" width="20" height="20">Solana</a></li>
+                                    <li><a class="dropdown-item" data-value="Monero XMR"><img src="{{ url_for('static', filename='crptoicos/monero-coin.png') }}" alt="Bitcoin icon" width="20" height="20">Monero XMR</a></li>
+                                    <li><a class="dropdown-item" data-value="Tron"><img src="{{ url_for('static', filename='crptoicos/tron-silver-coin.svg') }}" alt="Bitcoin icon" width="20" height="20">Tron</a></li>
+                                    <li><a class="dropdown-item" data-value="Zcash"><img src="{{ url_for('static', filename='crptoicos/zcash-cryptocurrency.svg') }}" alt="Bitcoin icon" width="20" height="20">Zcash</a></li>
+                                    <li><a class="dropdown-item" data-value="Dash"><img src="{{ url_for('static', filename='crptoicos/dash-cryptocurrency.svg') }}" alt="Bitcoin icon" width="20" height="20">Dash</a></li>
+                                    <li><a class="dropdown-item" data-value="Cosmos"><img src="{{ url_for('static', filename='crptoicos/cosmos-cryptocurrency.svg') }}" alt="Bitcoin icon" width="20" height="20">Cosmos</a></li>
+                                    <li><a class="dropdown-item" data-value="Avalanche"><img src="{{ url_for('static', filename='crptoicos/avalanche-avax.svg') }}" alt="Bitcoin icon" width="20" height="20">Avalanche</a></li>
+                                    <li><a class="dropdown-item" data-value="VeChain"><img src="{{ url_for('static', filename='crptoicos/vechain-cryptocurrency.svg') }}" alt="Bitcoin icon" width="20" height="20">VeChain</a></li>
+                                    <li><a class="dropdown-item" data-value="NEO"><img src="{{ url_for('static', filename='crptoicos/neo.png') }}" alt="neo icon" width="20" height="20">NEO</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="walletAddress" class="form-label visually-hidden">Wallet Address</label>
+                            {{form_wallet.walletAdress(id='walletAddress', value=data['walletAddress'], class='form-control', placeholder='Wallet Address', required=True, style='border:1px solid grey; border-radius:10px;')}}
+                        </div>
+                        <div class="d-grid mt-4">
+                            {{form_wallet.submit(id='form_btn', class='btn btn-primary btn-lg action_btn')}}
+                        </div>
+                    </form>
+                </section>
+            </div>
+            <div class="tab-pane fade" id="security" role="tabpanel" aria-labelledby="security-tab">
+                {{ form_password.hidden_tag() }}
+                <h4 class="text-muted text-center mb-2">Reset password</h4>
+                <form action="" id="changePasswordForm" method="POST">
+                    <div class="mb-4">
+                        <div class="input-group password-input-group">
+                            {{form_password.Currentpassword(id='currentPassword', class='form-control', placeholder='Current password', required=True)}}
+                            <span class="input-group-text toggle-password bg-white" data-target="currentPassword">
+                                <i class="fa-solid fa-eye"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="input-group password-input-group">
+                            {{form_password.NewPassword(id='newPassword', class='form-control', placeholder='New Password', required=True)}}
+                            <span class="input-group-text toggle-password bg-white" data-target="newPassword">
+                                <i class="fa-solid fa-eye"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="input-group password-input-group">
+                            {{form_password.ComfirmPassword(id='confirmPassword', class='form-control', placeholder='Comfirm New Password', required=True)}}
+                            <span class="input-group-text toggle-password bg-white" data-target="confirmPassword">
+                                <i class="fa-solid fa-eye"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn save-btn" id="changePasswordBtn">CHANGE PASSWORD</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+<script type="text/javascript" src="{{ url_for('static', filename='userstyle/setting.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,11 @@
+.modal-body.text-center .text-success {
+    color: #4CAF50 !important;
+}
+
+.modal-body.text-center .text-danger {
+    color: #F44336 !important;
+}
+
+.modal-footer.justify-content-center .btn {
+    min-width: 100px;
+}

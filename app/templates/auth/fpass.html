@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email verification</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .main-content-wrapper {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .email-input-container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 1rem;
+            box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+            transition: filter 0.3s ease-in-out;
+        }
+
+        .email-input-container.blurred-background {
+            filter: blur(5px);
+        }
+
+        .otp-modal .modal-content {
+            border-radius: 1rem;
+            box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            position: relative;
+        }
+
+        .otp-modal .modal-header {
+            border-bottom: none;
+            padding-bottom: 0;
+            justify-content: center;
+        }
+
+        .otp-modal .modal-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            justify-content: center;
+        }
+
+        .otp-modal h2 {
+            margin-bottom: 25px;
+            color: #343a40;
+            font-weight: 600;
+        }
+
+        .otp-description {
+            color: #6c757d;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+
+        .otp-inputs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .otp-inputs input {
+            width: 50px;
+            height: 60px;
+            font-size: 1.8rem;
+            text-align: center;
+            border: 2px solid #ced4da;
+            border-radius: 0.5rem;
+            outline: none;
+            transition: all 0.2s ease-in-out;
+            background-color: #f0f2f5;
+            color: #343a40;
+            font-weight: 500;
+        }
+
+        .otp-inputs input:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+            background-color: #fff;
+        }
+
+        .otp-inputs input::placeholder {
+            color: #adb5bd;
+        }
+
+        .btn-verify,
+        .btn-send-otp {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 0.5rem;
+            background-image: linear-gradient(to right, #007bff, #0056b3);
+            border: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+            color: #fff;
+        }
+
+        .btn-verify:hover,
+        .btn-send-otp:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 123, 255, 0.3);
+            background-image: linear-gradient(to right, #0056b3, #004085);
+        }
+
+        .resend-otp {
+            margin-top: 25px;
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        .resend-otp a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .resend-otp a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
+        .resend-timer {
+            font-weight: bold;
+            color: #dc3545;
+        }
+
+        .message-box {
+            background-color: #ffeeba;
+            border: 1px solid #ffc107;
+            color: #856404;
+            padding: 10px 15px;
+            border-radius: 0.5rem;
+            margin-top: 20px;
+            display: none;
+            font-size: 0.9rem;
+        }
+
+        .message-box.success {
+            background-color: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+
+        .message-box.error {
+            background-color: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: #343a40;
+            margin-bottom: 8px;
+            display: block;
+            text-align: left;
+        }
+
+        .api-status-box {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #fff;
+            padding: 10px 15px;
+            border-radius: 0.5rem;
+            box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            min-width: 150px;
+            justify-content: center;
+            text-align: center;
+            z-index: 1050;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+
+        .api-status-box.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .api-status-box.success {
+            background-color: #d4edda;
+            border: 1px solid #28a745;
+            color: #155724;
+        }
+
+        .api-status-box.error {
+            background-color: #f8d7da;
+            border: 1px solid #dc3545;
+            color: #721c24;
+        }
+
+        .navbar {
+            width: 100%;
+            background-color: #fff;
+            box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+            padding: 1rem 2rem;
+            border-bottom-left-radius: 1rem;
+            border-bottom-right-radius: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: #007bff !important;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .navbar-brand .logo-icon {
+            font-size: 1.8rem;
+        }
+
+        .navbar-nav .nav-link {
+            font-weight: 500;
+            color: #343a40 !important;
+            transition: color 0.2s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #007bff !important;
+        }
+
+        .btn-navbar {
+            padding: 0.5rem 1.25rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .btn-login {
+            background-color: transparent;
+            border: 2px solid #007bff;
+            color: #007bff;
+        }
+
+        .btn-login:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .btn-register {
+            background-image: linear-gradient(to right, #007bff, #0056b3);
+            border: none;
+            color: #fff;
+            margin-left: 10px;
+        }
+
+        .btn-register:hover {
+            background-image: linear-gradient(to right, #0056b3, #004085);
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold text-primary" href="{{ url_for( 'views.homepage' ) }}">
+                <h2 class="mb-0">
+                    <img src="https://placehold.co/40x40/0d6efd/ffffff?text=T-M" alt="Trusted Minner Logo" width="40"
+                        height="40" class="me-2">
+                    Trusted Minner
+                </h2>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <div class="d-flex align-items-center">
+                    {% if signup_success == True %}
+                    <a href="{{ url_for('views.account_page' ) }}"
+                        class="btn btn-outline-primary btn-rounded fw-semibold px-4">Account</a>
+                    {% else %}
+                    <a href="{{ url_for('auth.login' ) }}" class="text-primary me-3 fw-semibold">LOGIN</a>
+                    <a href="{{ url_for('auth.register' ) }}"
+                        class="btn btn-outline-primary btn-rounded fw-semibold px-4">Register</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="main-content-wrapper">
+        <div class="email-input-container" id="emailInputContainer">
+            <h2>Verify Your Contact</h2>
+            <p class="otp-description">Enter your email address to receive an OTP.</p>
+            <div class="mb-3 text-start">
+                <label for="inputBox" class="form-label">Email</label>
+                <input type="email" class="form-control" id="inputBox" placeholder="name@example.com">
+            </div>
+            <button id="sendOtpBtn" class="btn btn-primary btn-send-otp">Send OTP</button>
+            <div id="emailMessageBox" class="message-box"></div>
+        </div>
+    </div>
+    <div class="modal fade otp-modal" id="otpVerificationModal" tabindex="-1" aria-labelledby="otpVerificationModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="api-status-box" id="apiStatusBox">
+                    <div class="spinner-border spinner-border-sm text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <span id="apiStatusMessage">Sending OTP...</span>
+                </div>
+                <div class="modal-body">
+                    <h2 id="otpVerificationModalLabel" class="mt-4">OTP Verification</h2>
+                    <p class="otp-description">A One-Time Password has been sent to <strong id="displayEmail"></strong>. Please
+                        enter it below.</p>
+                    <div class="otp-inputs" id="otp-inputs-container">
+                        <input type="text" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="one-time-code"
+                            data-index="0" class="form-control" autofocus>
+                        <input type="text" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="off"
+                            data-index="1" class="form-control">
+                        <input type="text" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="off"
+                            data-index="2" class="form-control">
+                        <input type="text" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="off"
+                            data-index="3" class="form-control">
+                        <input type="text" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="off"
+                            data-index="4" class="form-control">
+                        <input type="text" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="off"
+                            data-index="5" class="form-control">
+                    </div>
+                    <button id="verifyOtpBtn" class="btn btn-primary btn-verify">Verify OTP</button>
+                    <div class="resend-otp">
+                        Didn't receive the OTP? <a href="#" id="resendOtpLink">Resend OTP</a>
+                        <span id="resendTimer" class="resend-timer ms-2"></span>
+                    </div>
+                    <div id="otpMessageBox" class="message-box"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const emailInputContainer = document.getElementById('emailInputContainer');
+            const inputBox = document.getElementById('inputBox');
+            const sendOtpBtn = document.getElementById('sendOtpBtn');
+            const emailMessageBox = document.getElementById('emailMessageBox');
+
+            const otpVerificationModalElement = document.getElementById('otpVerificationModal');
+            const otpVerificationModal = new bootstrap.Modal(otpVerificationModalElement);
+            const displayEmailSpan = document.getElementById('displayEmail');
+            const otpInputs = document.querySelectorAll('.otp-inputs input');
+            const verifyOtpBtn = document.getElementById('verifyOtpBtn');
+            const resendOtpLink = document.getElementById('resendOtpLink');
+            const resendTimerDisplay = document.getElementById('resendTimer');
+            const otpMessageBox = document.getElementById('otpMessageBox');
+
+            const apiStatusBox = document.getElementById('apiStatusBox');
+            const apiStatusMessage = document.getElementById('apiStatusMessage');
+            const apiSpinner = apiStatusBox.querySelector('.spinner-border');
+
+
+            const RESEND_COOLDOWN = 30;
+            let currentResendTimer = RESEND_COOLDOWN;
+            let resendInterval;
+
+            function showMessageBox(boxElement, message, type) {
+                boxElement.textContent = message;
+                boxElement.className = 'message-box';
+                boxElement.classList.add(type);
+                boxElement.style.display = 'block';
+                setTimeout(() => {
+                    boxElement.style.display = 'none';
+                }, 3000);
+            }
+
+            function showApiStatus(message, type = 'loading') {
+                apiStatusMessage.textContent = message;
+                apiStatusBox.className = 'api-status-box show';
+                if (type === 'loading') {
+                    apiSpinner.style.display = 'inline-block';
+                    apiStatusBox.classList.remove('success', 'error');
+                    apiStatusBox.classList.add('text-primary');
+                } else {
+                    apiSpinner.style.display = 'none';
+                    apiStatusBox.classList.remove('text-primary');
+                    apiStatusBox.classList.add(type);
+                }
+            }
+
+            function hideApiStatus() {
+                apiStatusBox.classList.remove('show', 'success', 'error');
+                apiSpinner.style.display = 'none';
+            }
+
+
+            sendOtpBtn.addEventListener('click', async () => {
+                const contact = inputBox.value.trim();
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                const phoneRegex = /^\+?[0-9]{7,}$/;
+
+                if (!contact) {
+                    showMessageBox(emailMessageBox, 'Please enter your email or phone number.', 'error');
+                    return;
+                }
+                if (!emailRegex.test(contact) && !phoneRegex.test(contact)) {
+                    showMessageBox(emailMessageBox, 'Please enter a valid email address or phone number.', 'error');
+                    return;
+                }
+
+                displayEmailSpan.textContent = contact;
+                emailInputContainer.classList.add('blurred-background');
+                otpVerificationModal.show();
+
+                showApiStatus('Sending OTP...');
+
+                try {
+                    const pram = inputBox.value.replace("+", "");
+                    console.log(pram)
+                    const apiUrl = `${window.location.origin}/auth/otp?b=${pram}`;
+
+                    const response = await fetch(apiUrl, {
+                        method: 'GET',
+                        headers: { 'Content-Type': 'application/json' },
+
+                    });
+
+                    const result = await response.json();
+                    console.log(result);
+                    if (result && result.length > 0) {
+                        const newOtp = result;
+                        const cleanedOtp = newOtp[0]['otp'];
+                        showApiStatus(`Your OTP: ${cleanedOtp}`, 'success');
+                        window.simulatedOtp = cleanedOtp;
+                    } else {
+                        throw new Error('Invalid API response structure for resend');
+                    }
+                } catch (error) {
+                    console.error('Error resending OTP:', error);
+                    showMessageBox(otpMessageBox, 'Failed to resend OTP. Please try again.', 'error');
+                    showApiStatus('Failed to resend OTP!', 'error');
+                } finally {
+                    startResendTimer();
+                }
+            });
+
+            otpVerificationModalElement.addEventListener('hidden.bs.modal', function () {
+                emailInputContainer.classList.remove('blurred-background');
+                hideApiStatus();
+            });
+
+            otpInputs.forEach((input, index) => {
+                input.addEventListener('input', (e) => {
+                    input.value = e.data ? e.data.replace(/[^0-9]/g, '') : '';
+                    if (input.value && index < otpInputs.length - 1) {
+                        otpInputs[index + 1].focus();
+                    }
+                });
+
+                input.addEventListener('keydown', (e) => {
+                    if (e.key === 'Backspace' && !input.value && index > 0) {
+                        otpInputs[index - 1].focus();
+                    }
+                    if (input.value.length === 1 && e.key !== 'Backspace' && e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') {
+                        e.preventDefault();
+                    }
+                });
+
+                input.addEventListener('paste', (e) => {
+                    e.preventDefault();
+                    const pasteData = e.clipboardData.getData('text').trim();
+                    if (pasteData.match(/^\d{6}$/)) {
+                        for (let i = 0; i < otpInputs.length; i++) {
+                            otpInputs[i].value = pasteData[i];
+                            if (i === otpInputs.length - 1) {
+                                otpInputs[i].focus();
+                            }
+                        }
+                    } else {
+                        input.value = pasteData[0] ? pasteData[0].replace(/[^0-9]/g, '') : '';
+                        if (input.value && index < otpInputs.length - 1) {
+                            otpInputs[index + 1].focus();
+                        }
+                    }
+                });
+            });
+
+            verifyOtpBtn.addEventListener('click', () => {
+                let otp = '';
+
+                otpInputs.forEach(input => {
+                    otp += input.value;
+                });
+
+                if (otp.length === otpInputs.length) {
+                    console.log('OTP entered:', otp);
+                    if (otp === window.simulatedOtp) {
+                        showMessageBox(otpMessageBox, 'OTP Verified Successfully!', 'success');
+                        setTimeout(() => {
+                            otpVerificationModal.hide();
+                        }, 1500);
+                        window.location.href = `${window.location.origin}/auth/reset?otp=${otp}&u=${inputBox.value}`
+                    } else {
+                        showMessageBox(otpMessageBox, 'Invalid OTP. Please try again.', 'error');
+                    }
+                } else {
+                    showMessageBox(otpMessageBox, 'Please enter the complete OTP.', 'error');
+                }
+            });
+
+            function startResendTimer() {
+                resendOtpLink.style.pointerEvents = 'none';
+                resendOtpLink.style.opacity = '0.5';
+                currentResendTimer = RESEND_COOLDOWN;
+                resendTimerDisplay.textContent = `(${currentResendTimer}s)`;
+
+                if (resendInterval) clearInterval(resendInterval);
+                resendInterval = setInterval(async () => {
+                    currentResendTimer--;
+                    if (currentResendTimer <= 0) {
+                        clearInterval(resendInterval);
+                        resendTimerDisplay.textContent = '';
+                        resendOtpLink.style.pointerEvents = 'auto';
+                        resendOtpLink.style.opacity = '1';
+                        hideApiStatus();
+                    } else {
+                        resendTimerDisplay.textContent = `(${currentResendTimer}s)`;
+                    }
+                }, 1000);
+            }
+
+            resendOtpLink.addEventListener('click', async (e) => {
+                e.preventDefault();
+                if (currentResendTimer <= 0) {
+                    console.log('Resending OTP...');
+                    showApiStatus('Resending OTP...', 'loading');
+
+                    try {
+                        const pram = inputBox.value.replace("+", "");
+                        console.log(pram)
+                        const apiUrl = `${window.location.origin}/auth/otp?b=${pram}`;
+
+                        const response = await fetch(apiUrl, {
+                            method: 'GET',
+                            headers: { 'Content-Type': 'application/json' },
+
+                        });
+
+                        const result = await response.json();
+                        console.log(result);
+                        if (result && result.length > 0) {
+                            const newOtp = result;
+                            const cleanedOtp = newOtp[0]['otp'];
+                            showApiStatus(`Your OTP: ${cleanedOtp}`, 'success');
+                            window.simulatedOtp = cleanedOtp;
+                        } else {
+                            throw new Error('Invalid API response structure for resend');
+                        }
+                    } catch (error) {
+                        console.error('Error resending OTP:', error);
+                        showMessageBox(otpMessageBox, 'Failed to resend OTP. Please try again.', 'error');
+                        showApiStatus('Failed to resend OTP!', 'error');
+                    } finally {
+                        startResendTimer();
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+{% extends 'auth/base.html' %}
+{% block title %}
+Log in
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <section class="widget-section bg-light">
+        <h2 class="text-center mb-4">Log In</h2>
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8 col-lg-6">
+                    <form action="{{ url_for('auth.login' ) }}" id="loginForm" method="POST">
+                        {{ form.hidden_tag() }}
+                        <div class="mb-3">
+                            <label for="username" class="form-label visually-hidden">Username</label>
+                            {{form.username(id='username', class='form-control', placeholder='Username', required=True)}}
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label visually-hidden">Password</label>
+                            <div class="input-group password-input-group">
+                                {{form.password(id='password', class='form-control', placeholder='Password', required=True)}}
+                                <span class="input-group-text toggle-password bg-white" data-target="password">
+                                    <i class="fa-solid fa-eye"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="d-grid mt-4">
+                            {{form.submit(id='form_btn', class='btn btn-primary btn-lg action_btn')}}
+                        </div>
+                    </form>
+                    <div class="login mt-3 text-center">
+                        <a style="font-size: 12px;" href="{{ url_for('auth.reset_fuc' ) }}">Forget Password?</a>
+                        <p style="font-size: 12px;">Don't have an account?
+                            <a href="{{url_for('auth.register')}}">register</a>
+                        </p>
+                    </div>
+                    <div style="text-align: center; font-size: 10px;">&copy; 2025</div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

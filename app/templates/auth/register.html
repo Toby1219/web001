@@ -1,0 +1,140 @@
+{% extends 'auth/base.html' %}
+{% block title %}
+Register
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <section class="widget-section bg-light">
+        <h2 class="text-center mb-4">Register</h2>
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8 col-lg-6">
+                    <form action="{{ url_for('auth.register' ) }}" id="signupForm" method="POST">
+                        {{ form.hidden_tag() }}
+                        <div class="mb-3">
+                            <label for="username" class="form-label visually-hidden">Username</label>
+                            {{form.username(id='username', class='form-control', placeholder='Username', required=True)}}
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label visually-hidden">Email</label>
+                            {{form.email(id='email', class='form-control', placeholder='Email', required=True)}}
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label visually-hidden">Phone Number</label>
+                            <div class="input-group">
+                                <select id="countryCode" class="form-select" style="max-width: 182px; border-radius: 6px 0 0 6px; border: inherit;">
+                                    {% for c_data in c_datas%}
+                                    <option id="phone_c_c_opt" value="{{c_data[1]}}" data-sample="{{c_data[2]}}">{{c_data[1]}} {{c_data[3].lower()}}</option>
+                                    {% endfor %}
+                                </select>
+                                {{form.phone(type='tel', inputmode="numeric", id='phone', class='form-control', placeholder='', value="+1 ", required=True)}}
+                                {{form.phone_region(type="text", id="phone_region", style="display:none;", value="+1")}}
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label visually-hidden">Password</label>
+                            <div class="input-group password-input-group">
+                                {{form.password(id='password', class='form-control', placeholder='Password', required=True)}}
+                                <span class="input-group-text toggle-password bg-white" data-target="password">
+                                    <i class="fa-solid fa-eye"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="retypepassword" class="form-label visually-hidden">retype Password</label>
+                            <div class="input-group password-input-group">
+                                {{form.retype_password(id='retypepassword', class='form-control', placeholder='Retype password', required=True)}}
+                                <span class="input-group-text toggle-password bg-white" data-target="retypepassword">
+                                    <i class="fa-solid fa-eye"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="walletTypeHiddenInput" class="form-label visually-hidden">Wallet Type</label>
+                            {{form.walletType(id='walletTypeHiddenInput', type='hidden', required=True)}}
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle w-100 text-start d-flex justify-content-between align-items-center" type="button" id="walletTypeDropdownToggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span id="selectedWalletTypeText">Select Wallet Type</span>
+                                </button>
+                                <ul class="dropdown-menu scrollable-menu" aria-labelledby="walletTypeDropdownToggle">
+                                    <li><a class="dropdown-item" data-value="Bitcoin"><img src="{{ url_for('static', filename='crptoicos/bitcoin_196543.png') }}" alt="Bitcoin icon" width="20" height="20"> Bitcoin</a></li>
+                                    <li><a class="dropdown-item" data-value="Ethereum"><img src="{{ url_for('static', filename='crptoicos/ethereum_15301597.png') }}" alt="Bitcoin icon" width="20" height="20"> Ethereum</a></li>
+                                    <li><a class="dropdown-item" data-value="Tether USDT ERC20"><img src="{{ url_for('static', filename='crptoicos/tether.png') }}" alt="Bitcoin icon" width="20" height="20"> Tether USDT ERC20</a></li>
+                                    <li><a class="dropdown-item" data-value="Tether USDT TRC20"><img src="{{ url_for('static', filename='crptoicos/tether.png') }}" alt="Bitcoin icon" width="20" height="20"> Tether USDT TRC20</a></li>
+                                    <li><a class="dropdown-item" data-value="TBinance Coin BNB - BEP2"><img src="{{ url_for('static', filename='crptoicos/binance.png') }}" alt="Bitcoin icon" width="20" height="20"> Binance Coin BNB - BEP2</a></li>
+                                    <li><a class="dropdown-item" data-value="Binance Smart Chain"><img src="{{ url_for('static', filename='crptoicos/bnb_smart_chain.png') }}" alt="Bitcoin icon" width="20" height="20"> Binance Smart Chain</a></li>
+                                    <li><a class="dropdown-item" data-value="Doge coin"><img src="{{ url_for('static', filename='crptoicos/dogecoin_15301572.png') }}" alt="Bitcoin icon" width="20" height="20"> Doge coin</a></li>
+                                    <li><a class="dropdown-item" data-value="Litecoin"><img src="{{ url_for('static', filename='crptoicos/litecoin.png') }}" alt="Bitcoin icon" width="20" height="20"> Litecoin</a></li>
+                                    <li><a class="dropdown-item" data-value="Shiba Inu"><img src="{{ url_for('static', filename='crptoicos/Shiba_Inu.png') }}" alt="Bitcoin icon" width="20" height="20"> Shiba Inu</a></li>
+                                    <li><a class="dropdown-item" data-value="Ripple XRP"><img src="{{ url_for('static', filename='crptoicos/ripple.png') }}" alt="Bitcoin icon" width="20" height="20"> Ripple XRP</a></li>
+                                    <li><a class="dropdown-item" data-value="Cardano"><img src="{{ url_for('static', filename='crptoicos/cardano.png') }}" alt="Bitcoin icon" width="20" height="20"> Cardano</a></li>
+                                    <li><a class="dropdown-item" data-value="Polkadot"><img src="{{ url_for('static', filename='crptoicos/polkadot.png') }}" alt="Bitcoin icon" width="20" height="20"> Polkadot</a></li>
+                                    <li><a class="dropdown-item" data-value="Solana"><img src="{{ url_for('static', filename='crptoicos/sol.png') }}" alt="Bitcoin icon" width="20" height="20"> Solana</a></li>
+                                    <li><a class="dropdown-item" data-value="Monero XMR"><img src="{{ url_for('static', filename='crptoicos/monero-coin.png') }}" alt="Bitcoin icon" width="20" height="20"> Monero XMR</a></li>
+                                    <li><a class="dropdown-item" data-value="Tron"><img src="{{ url_for('static', filename='crptoicos/tron-silver-coin.svg') }}" alt="Bitcoin icon" width="20" height="20"> Tron</a></li>
+                                    <li><a class="dropdown-item" data-value="Zcash"><img src="{{ url_for('static', filename='crptoicos/zcash-cryptocurrency.svg') }}" alt="Bitcoin icon" width="20" height="20"> Zcash</a></li>
+                                    <li><a class="dropdown-item" data-value="Dash"><img src="{{ url_for('static', filename='crptoicos/dash-cryptocurrency.svg') }}" alt="Bitcoin icon" width="20" height="20"> Dash</a></li>
+                                    <li><a class="dropdown-item" data-value="Cosmos"><img src="{{ url_for('static', filename='crptoicos/cosmos-cryptocurrency.svg') }}" alt="Bitcoin icon" width="20" height="20"> Cosmos</a></li>
+                                    <li><a class="dropdown-item" data-value="Avalanche"><img src="{{ url_for('static', filename='crptoicos/avalanche-avax.svg') }}" alt="Bitcoin icon" width="20" height="20"> Avalanche</a></li>
+                                    <li><a class="dropdown-item" data-value="VeChain"><img src="{{ url_for('static', filename='crptoicos/vechain-cryptocurrency.svg') }}" alt="Bitcoin icon" width="20" height="20"> VeChain</a></li>
+                                    <li><a class="dropdown-item" data-value="NEO"><img src="{{ url_for('static', filename='crptoicos/neo.png') }}" Bitcoin icon" width="20" height="20"> NEO</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="walletAddress" class="form-label visually-hidden">Wallet Address</label>
+                            {{form.walletAdress(id='walletAddress', class='form-control', placeholder='Wallet Address', required=True)}}
+                        </div>
+                        <div class="mb-3">
+                            <label for="ref_code_tag" class="form-label visually-hidden">Referral Code</label>
+                            {{form.ref_code(id='ref_code_tag', class='form-control', placeholder="referral code (optional)", value=ref_code)}}
+                        </div>
+                        <div class="d-grid mt-4">
+                            {{form.submit(id='form_btn', class='btn btn-primary btn-lg action_btn')}}
+                        </div>
+                    </form>
+                    <div class="login mt-3">
+                        <p style="text-align: center; font-size: 12px;">By clicking "Register" you automatically agree to our
+                            <a href="{{url_for('views.terms')}}">Terms of use and privacy policy</a>
+                        </p>
+                    </div>
+                    <div class="login mt-3">
+                        <p style="text-align: center; font-size: 12px;">Already have an account?
+                            <a href="{{url_for('auth.login')}}">Log in</a>
+                        </p>
+                    </div>
+                    <div style="text-align: center; font-size: 10px;">&copy; 2025</div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    const dropDown = document.getElementById("countryCode")
+    const phoneInput = document.getElementById("phone")
+    const phoneRegion = document.getElementById("phone_region")
+    dropDown.addEventListener('change', function(){
+        phoneInput.value = `${this.value} `;
+        phoneRegion.value = this.value
+    })
+    phoneInput.addEventListener('input', function(){
+        let localPart = phoneInput.value.substring(phoneRegion.value.length).replace(/\D/g, '');
+        let formattedLocal = '';
+        if (localPart.length > 0) {
+            formattedLocal += localPart.substring(0, 3);
+        }
+        if (localPart.length > 3) {
+            formattedLocal += ' ' + localPart.substring(3, 6);
+        }
+        if (localPart.length > 6) {
+            formattedLocal += ' ' + localPart.substring(6, 8);
+        }
+        if (localPart.length > 8) {
+            formattedLocal += localPart.substring(8);
+        }
+        let newValue = phoneRegion.value + (formattedLocal ? ' ' + formattedLocal.trim() : '');
+        phoneInput.value = newValue;
+    })
+</script>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'auth/base.html' %}
+{% block title %}
+Reset password
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <section class="widget-section bg-light">
+        <h2 class="text-center mb-4">Reset password</h2>
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8 col-lg-6">
+                    {{ form_password.hidden_tag() }}
+                    <form action="" id="changePasswordForm" method="POST">
+                        <div class="mb-4">
+                            <div class="input-group password-input-group">
+                                {{form_password.NewPassword(id='newPassword', class='form-control', placeholder='New Password', required=True)}}
+                                <span class="input-group-text toggle-password bg-white" data-target="newPassword">
+                                    <i class="fa-solid fa-eye"></i>
+                                </span>
+                            </div>
+                            {{form_password.otp(id='otp', class='form-control', type='Hidden', required=True)}}
+                        </div>
+                        <button type="submit" class="btn btn-primary save-btn" id="changePasswordBtn">CHANGE PASSWORD
+                        </button>
+                    </form>
+                    <div class="login mt-3 text-center">
+                        <a style="font-size: 12px;" href="{{ url_for('auth.reset_fuc' ) }}">Forget Password?</a>
+                        <p style="font-size: 12px;">Don't have an account?
+                            <a href="{{url_for('auth.register')}}">register</a>
+                        </p>
+                    </div>
+                    <div style="text-align: center; font-size: 10px;">&copy; 2025</div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

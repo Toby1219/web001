@@ -1,0 +1,48 @@
+{% extends 'landing/base.html' %}
+{% block title %}
+Live Payout   
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='lpagestyle/l_payout.css') }}">
+<section class="breadcrumb-section">
+    <div class="container">
+        <nav aria-label="breadcrumb" class="d-flex justify-content-end">
+            <ol class="breadcrumb custom-breadcrumb mb-0">
+                <li class="breadcrumb-item">Home</li>
+                <li class="breadcrumb-item">Resources</li>
+                <li class="breadcrumb-item active" aria-current="page">Live Payouts</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+<br>
+<section class="clients-section with-background">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8">
+                <h2 class="clients-heading">Over 1000+ satisfied clients across the globe</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-4">
+            <div class="col-12 col-md-10 col-lg-8">
+                <p class="clients-number">100K</p>
+                <p class="clients-description">
+                    Trusted Minner is an award winning forex and stock broker, providing automated trading services and facilities to both retail and institutional clients.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container mt-5 py-5">
+    <h3 class="text-center">Discover Our Live Payouts</h3>
+    <div class="p-5 bg-light rounded shadow-sm text-center">
+        <p class="main-paragraph">
+            Here you can explore our live proof of payment with the amount, BTC address and transactions Id. Click On The Wallet Addresses Displaying On Your Screen To Verify Recent Payment Transactions. Start trading and get your Bitcoin address listed on our live payment statistics.
+        </p>
+        <div class="" style="width: fit-content;">
+            <iframe src="https://www.btcwidget.info/widget/liveTx/%23ffffff/%23ffd600/%23000000/%23000000/%23ffd600/800/400/10" width="800" height="400" frameBorder="1" scrolling="no"></iframe>
+        </div>
+    </div>
+</div>
+{% endblock %}

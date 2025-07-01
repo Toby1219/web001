@@ -1,0 +1,128 @@
+{% extends 'landing/base.html' %}
+{% block title %}
+About
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='lpagestyle/about.css') }}">
+<section class="breadcrumb-section">
+    <div class="container">
+        <nav aria-label="breadcrumb" class="d-flex justify-content-end">
+            <ol class="breadcrumb custom-breadcrumb mb-0">
+                <li class="breadcrumb-item">Home</li>
+                <li class="breadcrumb-item active" aria-current="page">About</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+<section class="main-content-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <h1 class="main-title">The right place for you to invest</h1>
+                <p class="main-paragraph">
+                    Trusted Minner is an award winning forex and stock broker, providing automated trading services and facilities to both retail and institutional clients. Through its policy of providing the best possible automated trading conditions to its clients and allowing both full time and part time investors automation for crypto trading. Trusted Minner is the leading crypto trading bot for Binance, Coinbase Pro, Bitmex and more. Easy to use, self hosted trading bot software.
+                </p>
+                <p class="second-paragraph">
+                    Invest with the licensed and award-winning broker. Open an account today and enjoy features and the full benefits that Trusted Capital has to offer.
+                </p>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-5">
+            <div class="col-lg-10">
+                <h4 class="breakdown-heading">Here is a breakdown of how profits are generated -</h4>
+                <ul class="breakdown-list">
+                    <li class="breakdown-list-item"><i class="bi bi-check"></i><span># 250+ in 12% Hedge Funds</span></li>
+                    <li class="breakdown-list-item"><i class="bi bi-check"></i><span>32% Stock Investment</span></li>
+                    <li class="breakdown-list-item"><i class="bi bi-check"></i><span>38.2% Real Estate</span></li>
+                    <li class="breakdown-list-item"><i class="bi bi-check"></i><span>55.2% Large Market Coverage</span></li>
+                    <li class="breakdown-list-item"><i class="bi bi-check"></i><span>73.23% Bitcoin Investment</span></li>
+                    <li class="breakdown-list-item"><i class="bi bi-check"></i><span>80% Trading Forex</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="values-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="value-card">
+                    <div class="icon-circle">
+                        <i class="bi bi-leaf-fill"></i>
+                    </div>
+                    <h3 class="value-heading">Intellectual honesty</h3>
+                    <p class="value-description">
+                        For over 15 years, Trusted Minner has established itself as a major player in the online broker financial field, with a proven track record of positive customer satisfaction. Our key responsibility is to offer top notch services to all our traders.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="value-card">
+                    <div class="icon-circle">
+                        <i class="bi bi-hourglass-split"></i>
+                    </div>
+                    <h3 class="value-heading">Accountability</h3>
+                    <p class="value-description">
+                        We are accountable for our actions. If an issue emerges we bring it forward immediately and work on it with a solution-oriented mindset.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="value-card">
+                    <div class="icon-circle">
+                        <i class="bi bi-flag-fill"></i>
+                    </div>
+                    <h3 class="value-heading">Result Orientation</h3>
+                    <p class="value-description">
+                        We take ownership for delivering high quality results on time. We embrace opportunities and rather think about how we can make something work instead of why it would not work.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="team-section">
+    <div class="container">
+        <h2 class="section-heading">Trusted Minner Professionals</h2>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-6 col-lg-6 d-flex justify-content-center">
+                <div class="team-member-card">
+                    <img src="{{ url_for('static', filename='image/womanimage1.jpg') }}" alt="Cynthia Dixon" class="img-fluid member-image member-image-top rounded-3">
+                    <div class="text-content">
+                        <p class="member-role">CHIEF EXECUTIVE OFFICER</p>
+                        <h4 class="member-name">Cynthia Dixon</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-6 d-flex justify-content-center">
+                <div class="team-member-card">
+                    <img src="{{ url_for('static', filename='image/manimage1.jpg') }}" alt="Arthur Parker" class="img-fluid member-image member-image-top rounded-3">
+                    <div class="text-content">
+                        <p class="member-role">EXECUTIVE ASSISTANT</p>
+                        <h4 class="member-name">Arthur Parker</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-6 d-flex justify-content-center">
+                <div class="team-member-card">
+                    <img src="{{ url_for('static', filename='image/womanimage2.jpg') }}" alt="Evelyn Mason" class="img-fluid member-image member-image-bottom rounded-3">
+                    <div class="text-content">
+                        <p class="member-role">MARKETING SPECIALIST</p>
+                        <h4 class="member-name">Evelyn Mason</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-6 d-flex justify-content-center">
+                <div class="team-member-card">
+                    <img src="{{ url_for('static', filename='image/manimage2.jpg') }}" alt="Bryan Greene" class="img-fluid member-image member-image-bottom rounded-3">
+                    <div class="text-content">
+                        <p class="member-role">HUMAN RESOURCES</p>
+                        <h4 class="member-name">Bryan Greene</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

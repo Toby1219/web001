@@ -1,0 +1,24 @@
+{% extends 'landing/base.html' %}
+{% block title %}
+Contact and Loctaion
+{% endblock %}
+{% block content%}
+<section class="widget-section bg-light rounded-3 shadow-sm mb-5">
+    <h2 class="text-center mb-4 pt-4">Location</h2>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2504.0039030017524!2d-3.0061822241167704!3d51.12683603843434!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48720889bd411051%3A0xd4b6238e283b04b1!2sFriarn%20St%2C%20Bridgwater%20TA6%203LH%2C%20UK!5e0!3m2!1sen!2sng!4v1749390710845!5m2!1sen!2sng" width="900" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            &nbsp;
+            <p class="text-center"><span>Phone number: </span>{{webs[0]}}  or  {{webs[1]}}</p>
+           
+            <p class="text-center"><span>Location: </span>Friarn St, Bridgwater TA6 3LH, UK</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

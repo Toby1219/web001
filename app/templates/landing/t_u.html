@@ -1,0 +1,304 @@
+{% extends 'landing/base.html' %}
+{% block title %}
+Terms and conditions
+{% endblock %}
+{% block content%}
+<link rel="stylesheet" href="{{ url_for('static', filename='lpagestyle/t_u.css') }}">
+
+<section class="breadcrumb-section">
+    <div class="container">
+        <nav aria-label="breadcrumb" class="d-flex justify-content-end">
+            <ol class="breadcrumb custom-breadcrumb mb-0">
+                <li class="breadcrumb-item">Home</li>
+                <li class="breadcrumb-item">Legal</li>
+                <li class="breadcrumb-item active" aria-current="page">Terms Of Use</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<section class="main-content-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <h1 class="main-title">Terms And Conditions</h1>
+                <p class="intro-paragraph">In these General Terms and Conditions the following terms have the following meanings, unless expressly stated otherwise:</p>
+                <ul class="definition-list">
+                    <li class="definition-item"><span class="definition-term">General Terms and Conditions:</span><span class="definition-description">The general terms and conditions as set out hereinafter.</span></li>
+                    <li class="definition-item"><span class="definition-term">Trusted Minner:</span><span class="definition-description">Trusted Minner, part of OliNo Energy B.V.</span></li>
+                    <li class="definition-item"><span class="definition-term">OliNo:</span><span class="definition-description">OliNo Energy B.V. registered with the Ch. of Comm. under number 17205823.</span></li>
+                    <li class="definition-item"><span class="definition-term">Service:</span><span class="definition-description">All work, in whatsoever form, executed by Trusted Minner for or for the benefit of the Client.</span></li>
+                    <li class="definition-item"><span class="definition-term">Client:</span><span class="definition-description">Those who have accepted the applicability of these General Terms and Conditions and provided an assignment for the provision of the service.</span></li>
+                    <li class="definition-item"><span class="definition-term">Agreement:</span><span class="definition-description">Every Agreement concluded between Trusted Minner and the Client.</span></li>
+                    <li class="definition-item"><span class="definition-term">Trader:</span><span class="definition-description">The fully automatic Bitcoin Trader who trades Bitcoins on behalf of the Client.</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="scope-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <h2 class="scope-heading">Scope</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <p class="scope-paragraph">These General Terms and Conditions apply to every offer and Agreement concluded between Trusted Minner and the Client, unless parties expressly and in writing derogate from these General Terms and Conditions.<br>These General Terms and Conditions also apply to Agreements with Trusted Minner for the performance of which third parties must be involved.<br>The applicability of any purchase and/or other General Terms and Conditions of the Client is expressly rejected.<br>If it appears that one or more provisions of these General Terms and Conditions are null and void or voidable, these General Terms and Conditions will continue to be in existence for all the remainder.<br>Derogations from the Agreement and General Terms and Conditions will only be valid if these have been expressly agreed in writing with Trusted Minner.<br>If Trusted Minner does not always require strict compliance with these conditions, this will not mean that the provisions thereof are not applicable, or that Trusted Minner to any extent would lose the right in other cases to require strict compliance with the provisions of these terms and conditions.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="scope-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <h2 class="scope-heading">Offers</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <p class="scope-paragraph">Offers will be made in writing and/or electronically, unless urgent circumstances make this impossible.<br>All offers from Trusted Minner are without obligation, unless a period for acceptance is stated in the offer. If a period for acceptance is set out in the offer, the offer will lapse when this period has expired.<br>All offers from Trusted Minner are valid during the period included in the offer. The offer lapses when this period has expired.<br>Trusted Minner cannot be bound by its offers if the Client, in accordance with the standards of reasonableness and fairness and according to generally accepted standards, ought to have understood that the offer or a part thereof contains an obvious mistake or clerical error.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="scope-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <h2 class="scope-heading">Account</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <p class="scope-paragraph">The Client must generate an account to be able to use Trusted Minner’s trading. The Client must, in doing this, fill in his/her personal data.<br>The Client will manage his/her account and must personally set this up.<br>A minor will always require express permission from his/her parent or guardian.<br>It is not permitted to provide the login details to third parties and/or to use a third party’s login details.<br>Trusted Minner will never be responsible or liable for the contents and/or information that is placed on the Client’s profile page.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="scope-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <h2 class="scope-heading">Trading</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <p class="scope-paragraph">The Client must first generate a personal account with a third party Bitcoin exchange that is supported by Trusted Minner, in order to let Trusted Minner trade on behalf of the Client. Following this the Client must generate API keys with this exchange with minimal rights, as a result of which users of these API keys will only have the right to trade and request balances on behalf of the Client. The API keys expressly do NOT have the right to remove money or Bitcoins from the exchange. The Client will be personally responsible for generating API keys with minimal rights. The Client is aware that more risks are taken if API keys are generated with too many rights, because any hackers can misuse these keys to remove money or Bitcoins from the Bitcoin exchange account of the Client.<br>The API keys are transferred to Trusted Minner during the registration for Trusted Minner. The Client thereby gives Trusted Minner the right to and the possibility to be allowed to trade on behalf of the Client.<br>If generated correctly by the Client, the API keys will not give Trusted Minner any possibility of transferring money or Bitcoins to other accounts.<br>The Client needs at least one credit to be able to trade. If the number of credits is negative or zero, there can be no trading.<br>The credits purchased by the Client are in any event not refundable.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="scope-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <h2 class="scope-heading">Termination of the Trusted Minner account</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <p class="scope-paragraph">A Client can at any time unilaterally stop the use of the Trusted Minner service.<br>OliNo will be entitled to unilaterally terminate the account with immediate effect if:<br>There is fraud or misuse on the part of the Client. <br>The Client’s actions cause damage for OliNo. <br>An account of the Client has had negative credits for longer than 2 months. <br></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="scope-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <h2 class="scope-heading">Performance of the Agreement</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <p class="scope-paragraph">Trusted Minner will perform the Agreement to the best of its knowledge and ability and in accordance with high standards. Trusted Minner has the right to have specific work executed by third parties. The applicability of Sections 404 and 407, subsection 2, Book 7 of the Civil Code is expressly excluded. The work will be executed within a period stated by Trusted Minner. If a period has been agreed or stated for the execution of specific work, this period will only be indicative and is never to be regarded as a final deadline. If Trusted Minner requires data or instructions from the Client, which are necessary for the performance of the Agreement, the execution period will commence after Trusted Minner has received this from the Client.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="scope-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <h2 class="scope-heading">Prices and rates</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <p class="scope-paragraph">The prices and/or rates are expressed in Euro, including VAT and other duties imposed by authorities, unless stated otherwise. The prices and/or rates are including travel and accommodation, packaging, delivery, or dispatch costs, and administrative costs, unless stated otherwise. Payment will take place by means of the purchase of pre-paid credits. These credits must be purchased online and paid electronically. Payment will always take place in advance, unless agreed otherwise</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="scope-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <h2 class="scope-heading">Return</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <p class="scope-paragraph">The trader’s annual return will be optimised by conducting simulations with real historical Bitstamp trading data. The trader will only sell bitcoins if profit can be made. By having the strategy to only sell with profit we have made the assumption that Bitcoin will have an increasing price in the long-term. Because of this the trader can wait until the pockets with Bitcoin that have already been purchased can be sold again with profit. This means that in a prolonged monotonous bear market no return can be achieved in the worst case situation. The trader’s return is very dependent on the market. If the Bitcoin’s price fluctuates considerably, the Client will achieve the best return with the trader. Past return on investment is no guarantee for the future. Investment in Bitcoin is regarded by many people as high-risk and that also applies therefore to using the cryptotraders. Therefore never invest more than you can afford to lose.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="scope-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <h2 class="scope-heading">Liability</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <p class="scope-paragraph">Trusted Minner will only be liable for direct damage arisen through wilful recklessness or intention on the part of Trusted Minner. Direct damage is exclusively taken to mean: <br><br><br>damage to property of the Client; <br>reasonable costs incurred by the Client for establishing liability and the (extent of the direct) damage; <br>reasonable costs, reasonably incurred by the Client, which could be and were permitted to be incurred in all reasonableness, for the prevention or limitation of the damage, insofar as the Client demonstrates that these costs have resulted in limitation of the direct damage; <br>reasonable costs, which the Client has incurred in all reasonableness for acquiring payment without the intervention of the courts, as referred to in Section 96, subsection 1, under c, Book 6 of the Civil Code. <br><br>Trusted Minner will never be liable for the loss of money or Bitcoins due to problems with the Bitcoin exchange, or the careless transfer of money or Bitcoins by the Client from – or to – the Bitcoin exchange. Trusted Minner will never be liable for the loss of money or Bitcoins due to problems with Bitcoin or the Bitcoin network or the decrease in value of Bitcoin. Trusted Minner will never be liable for indirect loss, including in any event consequential loss, lost profit, lost savings, loss due to business interruption, or intangible loss on the part of the Client. Trusted Minner will not be liable for damage, of whatsoever nature, due to the fact that Trusted Minner has proceeded from inaccurate and/or incomplete data provided by the Client, unless this inaccuracy or incompleteness ought to be apparent to Trusted Minner. The limitations of liability included in this article do not apply if the damage can be attributed to intention or gross negligence on the part of Trusted Minner or its managerial employees. If Trusted Minner were to be liable for any damage whatsoever, the liability on the part of Trusted Minner will be limited to a maximum amount of $ 7,500 or to the amount that the insurance taken out by Trusted Minner gives entitlement to, plus the amount of the deductible which is not borne by the insurer under the policy conditions that Trusted Minner accordingly must bear. The client must report the damage, for which Trusted Minner can be held liable, as soon as possible but in any event within 10 days from the arising of the damage, to Trusted Minner, all this at the risk of forfeiting any right to compensation of this damage. Any action for liability against Trusted Minner lapses within one year after the Client became aware of the damage causing fact or could reasonably have become aware thereof.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="scope-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <h2 class="scope-heading">Indemnity</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <p class="scope-paragraph">The client indemnifies Trusted Minner against possible claims by third parties, who in connection with the performance of the Agreement suffer damage which is attributable to the Client. If Trusted Minner is held liable by the third parties on that basis, the Client will be obliged to assist Trusted Minner at law and otherwise. All costs and damage on the part of the Trusted Minner and third parties will further be at the Client’s expense and risk.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="scope-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <h2 class="scope-heading">Confidentiality</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <p class="scope-paragraph">Trusted Minner as well as the Client will be obliged, during the term and after the termination of the Agreement, to maintain the confidentiality of all facts and particulars concerning the enterprise, regarding which the Client knows or reasonably can suspect that these are confidential. This duty of confidentiality also contains all data of the employees, customers, clients and other business contacts that has come to one’s knowledge on the basis of the Assignment.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="scope-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <h2 class="scope-heading">Limitation period</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <p class="scope-paragraph">In derogation from the statutory limitation periods, a limitation period of one year applies to all claims towards Trusted Minner and (any) third parties engaged by Trusted Minner.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="scope-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <h2 class="scope-heading">Privacy and cookies</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <p class="scope-paragraph">The data and information provided by the Client to Trusted Minner will be saved by Trusted Minner with due care and confidentiality. Trusted Minner is only and exclusively permitted to use the Client’s personal data in the context of the execution of its obligation to supply, or for dealing with a complaint. During visits to its website Trusted Minner can collate, by means of cookies, information from the Client regarding the use of the website. The information collated by Trusted Minner by means of cookies can be used for functional and analytical purposes. Trusted Minner is not permitted to lend, lease, sell, or in another manner disclose the Client’s personal data. If, on the basis of a statutory provision or a judicial decision, Trusted Minner will be obliged to provide confidential information to third parties, and Trusted Minner cannot rely concerning this on a statutory right to decline to give evidence, or as the case may be a right to decline to give evidence acknowledged or permitted by the court with competent jurisdiction, Trusted Minner cannot be held liable for compensation or indemnification. The Client will also not be entitled to terminate the Agreement on the basis of any damage arisen due to this. The Client agrees to Trusted Minner approaching the Client for statistical research or a client satisfaction survey. If the Client does not want to be approached for research, the Client can make this known. Trusted Minner retains the right to use the other data of the Client in anonymous form for (statistical) research and database.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="scope-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <h2 class="scope-heading">Amendment of the General Terms and Conditions</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <p class="scope-paragraph">Trusted Minner has the right to unilaterally amend these General Terms and Conditions. Amendments will also apply with regard to Agreements that have already been concluded. Trusted Minner will inform the Client by email of the amendments. The amendments of the General Terms and Conditions will come into effect thirty days after the Client has been informed of the amendments. If the Client does not agree to the notified amendments, the Client will have the right to terminate the Agreement.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="scope-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <h2 class="scope-heading">Amendment of the General Terms and Conditions</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <p class="scope-paragraph">Trusted Minner has the right to unilaterally amend these General Terms and Conditions. Amendments will also apply with regard to Agreements that have already been concluded. Trusted Minner will inform the Client by email of the amendments. The amendments of the General Terms and Conditions will come into effect thirty days after the Client has been informed of the amendments. If the Client does not agree to the notified amendments, the Client will have the right to terminate the Agreement.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="scope-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <h2 class="scope-heading">Applicable law and disputes</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <p class="scope-paragraph">The law of the Netherlands exclusively applies to all legal relationships that Trusted Minner is party to. This also applies if an obligation is wholly or in part executed abroad or if the Client resides abroad.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<button id="scrollToTopBtn" title="Go to top">
+    <i class="bi bi-chevron-up"></i>
+</button>
+
+<script>
+    const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+    window.onscroll = function() {
+        scrollFunction();
+    };
+    function scrollFunction() {
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            scrollToTopBtn.classList.add('show');
+        } else {
+            scrollToTopBtn.classList.remove('show');
+        }
+    }
+    scrollToTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+</script>
+
+{% endblock %

@@ -1,0 +1,415 @@
+{% extends 'landing/base.html' %}
+{% block title %}
+Trusted Minner
+{% endblock %}
+{% block content%}
+<link rel="stylesheet" href="{{ url_for('static', filename='lpagestyle/lpage.css') }}">
+
+<section class="hero bg-dark">
+    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="container">
+                    <div class="row align-items-center py-5">
+                        <div class="col-md-6">
+                            <h1>Let our <span class="text-primary">experts</span> do the job for you!</h1>
+                            <p class="mt-3">Our team specializes in investing in the most relevant investment instruments of the 21st century.</p>
+                            <div class="cta-buttons mt-4">
+                                {% if signup_success == True %}
+                                    <a href="{{ url_for('views.account_page' ) }}" class="btn btn-primary">Account</a>
+                                {% else %}
+                                    <a href="{{ url_for('auth.register' ) }}" class="btn btn-primary">Open account</a>
+                                    <a href="{{ url_for('auth.login' ) }}" class="btn btn-outline-primary">Login</a>
+                                {% endif %}
+                            </div>
+                            <p class="text-muted mt-2" style="font-size: 0.85rem;">*Trading in Forex/CFDs is highly speculative and carries a high level of risk.</p>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <img src="{{ url_for('static', filename='image/chart4.png') }}" alt="Slide 1 Image" class="img-fluid rounded shadow-sm">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="container">
+                    <div class="row align-items-center py-5">
+                        <div class="col-md-6">
+                            <h1>Invest smart with <span class="text-primary">zero commissions</span></h1>
+                            <p class="mt-3">Join thousands who enjoy fast execution, accurate data, and expert tools built for success.</p>
+                            <div class="cta-buttons mt-4">
+                                {% if signup_success == True %}
+                                    <a href="{{ url_for('views.account_page' ) }}" class="btn btn-primary">Account</a>
+                                {% else %}
+                                    <a href="{{ url_for('auth.register' ) }}" class="btn btn-primary">Open account</a>
+                                    <a href="{{ url_for('auth.login' ) }}" class="btn btn-outline-primary">Login</a>
+                                {% endif %}
+                            </div>
+                            <p class="text-muted mt-2" style="font-size: 0.85rem;">*Terms and conditions apply.</p>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <img src="{{ url_for('static', filename='image/chart2.jpg') }}" alt="Slide 2 Image" class="img-fluid rounded shadow-sm">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="container">
+                    <div class="row align-items-center py-5">
+                        <div class="col-md-6">
+                            <h1>Unlock <span class="text-primary">professional tools</span> for your financial growth</h1>
+                            <p class="mt-3">We provide everything from trading guides to technical analysis tools — all in one place.</p>
+                            <div class="cta-buttons mt-4">
+                                {% if signup_success == True %}
+                                    <a href="{{ url_for('views.account_page' ) }}" class="btn btn-primary">Account</a>
+                                {% else %}
+                                    <a href="{{ url_for('auth.register' ) }}" class="btn btn-primary">Open account</a>
+                                    <a href="{{ url_for('auth.login' ) }}" class="btn btn-outline-primary">Login</a>
+                                {% endif %}
+                            </div>
+                            <p class="text-muted mt-2" style="font-size: 0.85rem;">*Platform access may vary by region.</p>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <img src="{{ url_for('static', filename='image/chart3.jpg') }}" alt="Slide 3 Image" class="img-fluid rounded shadow-sm">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container text-center">
+        <div class="row g-4">
+            <div class="col-6 col-md-3">
+                <i class="material-icons">build</i>
+                <h6 class="mt-2 text-uppercase">Enhanced<br>Tools</h6>
+            </div>
+            <div class="col-6 col-md-3">
+                <i class="material-icons">book</i>
+                <h6 class="mt-2 text-uppercase">Trading<br>Guides</h6>
+            </div>
+            <div class="col-6 col-md-3">
+                <i class="material-icons">flash_on</i>
+                <h6 class="mt-2 text-uppercase">Fast<br>execution</h6>
+            </div>
+            <div class="col-6 col-md-3">
+                <i class="material-icons">percent</i>
+                <h6 class="mt-2 text-uppercase">0%<br>Commission</h6>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 text-center bg-light">
+    <div class="container">
+        <h2 class="fw-bold text-dark mb-5">Proudly serving traders for over 5 years.</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-4 mb-4">
+                <div class="award-content-wrapper shadow-3">
+                    <img src="{{ url_for('static', filename='image/wrath_L.png') }}" alt="Award Wreath Left" class="wreath-icon me-2">
+                    <div class="text-content">
+                        <h5 class="fw-semibold mb-0">Best Trading Experience</h5>
+                        <p class="text-primary mb-0">JORDAN FOREX EXPO 2019</p>
+                    </div>
+                    <img src="{{ url_for('static', filename='image/wrath_R.png') }}" alt="Award Wreath Right" class="wreath-icon ms-2">
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="award-content-wrapper shadow-3">
+                    <img src="{{ url_for('static', filename='image/wrath_L.png') }}" alt="Award Wreath Left" class="wreath-icon me-2">
+                    <div class="text-content">
+                        <h5 class="fw-semibold mb-0">Best Execution Broker</h5>
+                        <p class="text-primary mb-0">FOREX EXPO DUBAI 2020</p>
+                    </div>
+                    <img src="{{ url_for('static', filename='image/wrath_R.png') }}" alt="Award Wreath Right" class="wreath-icon ms-2">
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="award-content-wrapper shadow-3">
+                    <img src="{{ url_for('static', filename='image/wrath_L.png') }}" alt="Award Wreath Left" class="wreath-icon me-2">
+                    <div class="text-content">
+                        <h5 class="fw-semibold mb-0">Best Trading Platform</h5>
+                        <p class="text-primary mb-0">LONDON SUMMIT 2021</p>
+                    </div>
+                    <img src="{{ url_for('static', filename='image/wrath_R.png') }}" alt="Award Wreath Right" class="wreath-icon ms-2">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-2 bg-light">
+    <div class="container">
+        <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-forex-cross-rates.js" async>
+            {
+                "width": "100%",
+                "height": "500",
+                "currencies": [
+                    "EUR", "USD", "JPY", "GBP", "CHF", "AUD", "CAD", "NZD", "CNY", "DKK", "ZAR", "HKD", "THB", "MXN", "IDR", "KRW", "ISK", "RUB"
+                ],
+                "isTransparent": false,
+                "colorTheme": "light",
+                "locale": "en"
+            }
+            </script>
+        </div>
+    </div>
+</section>
+
+<section class="investment-section bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>Experience Profitable<br>Investment.</h2>
+                <p>Explore an ever-expanding variety of cryptocurrencies, and buy and sell the underlying asset on Trusted Minner. Build your crypto-based portfolio and enjoy benefits not offered by most exchanges, such as near-immediate execution of market orders.</p>
+                <i class="material-icons scroll-down-icon">keyboard_arrow_down</i>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="plan-card shadow-3">
+                    <img src="{{ url_for('static', filename='image/in-profit-content-1.jpg') }}" class="plan-card-img" alt="Two men reviewing investment data">
+                    <div class="plan-card-content">
+                        <h3 class="plan-card-title">BEGINNERS Plan</h3>
+                        <p class="plan-card-subtitle">$50 - $499 <br><small>6% PROFIT IN 15 HOURS</small></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="plan-card shadow-3">
+                    <img src="{{ url_for('static', filename='image/in-profit-content-2.jpg') }}" class="plan-card-img" alt="Two men reviewing investment data">
+                    <div class="plan-card-content">
+                        <h3 class="plan-card-title">BEGINNERS PRO</h3>
+                        <p class="plan-card-subtitle">$500 - $1499 <br><small>8% PROFIT IN 24 HOURS</small></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="plan-card shadow-3">
+                    <img src="{{ url_for('static', filename='image/in-profit-content-4.jpg') }}" class="plan-card-img" alt="Two men reviewing investment data">
+                    <div class="plan-card-content">
+                        <h3 class="plan-card-title">PROMO PLAN</h3>
+                        <p class="plan-card-subtitle">$3000-$9000<br><small>10% PROFIT IN 5 HOURS</small></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="plan-card shadow-3">
+                    <img src="{{ url_for('static', filename='image/in-profit-content-3.jpg') }}" class="plan-card-img" alt="Two men reviewing investment data">
+                    <div class="plan-card-content">
+                        <h3 class="plan-card-title">PROFESSIONAL PLAN</h3>
+                        <p class="plan-card-subtitle">$1500-$15000<br><small>15% PROFIT IN 36 HOURS</small></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="plan-card shadow-3">
+                    <img src="{{ url_for('static', filename='image/in-profit-content-2.jpg') }}" class="plan-card-img" alt="Two men reviewing investment data">
+                    <div class="plan-card-content">
+                        <h3 class="plan-card-title">EXPERT TRADE</h3>
+                        <p class="plan-card-subtitle">$15000-UNLIMITED<br><small>25% PROFIT IN 48 HOURS</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="hero-section">
+    <div class="container">
+        <div class="row justify-content-center mb-4">
+            <div class="col-12 col-md-8">
+                <div class="hero-stats">
+                    <i class="material-icons icon">trending_up</i>
+                    <div class="text-content">
+                        <h3>324,978,126</h3>
+                        <p>TRADES OPENED AT PROFIT</p>
+                    </div>
+                </div>
+                {% if not signup_success %}
+                <p class="hero-tagline">Learn more about our investments, with 100% profit accuracy.</p>
+                <a href="#" class="btn btn-custom-blue btn-lg ripple-surface">Sign Up Today</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="charting-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10">
+                <h2 class="mb-4">Supercharged<br>super-charting</h2>
+                <div class="chart-image-container">
+                    <video controls autoplay class="img-fluid chart-image">
+                        <source src="{{ url_for('static', filename='video/super.mp4') }}" type="video/mp4">
+                    </video>
+                    <img src="{{ url_for('static', filename='image/chart.png') }}" alt="" class="w-100 img-fluid chart-image">
+                    <section class="top-features-section">
+                        <div class="container-fluid">
+                            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3 justify-content-center">
+                                <div class="col">
+                                    <div class="feature-item">
+                                        <div class="feature-icon-wrapper">
+                                            <i class="bi bi-graph-up-arrow"></i>
+                                        </div>
+                                        <div class="text-content">
+                                            <div class="feature-title">12 chart types</div>
+                                            <small class="feature-description">Including Renko, Kagi and Point & Figure - all customizable</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="feature-item">
+                                        <div class="feature-icon-wrapper">
+                                            <i class="bi bi-columns-gap"></i>
+                                        </div>
+                                        <div class="text-content">
+                                            <div class="feature-title">Up to 8 charts per tab</div>
+                                            <small class="feature-description">Plus, synchronize symbols, intervals and even drawings</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="feature-item">
+                                        <div class="feature-icon-wrapper">
+                                            <i class="bi bi-arrow-counterclockwise"></i>
+                                        </div>
+                                        <div class="text-content">
+                                            <div class="feature-title">Bar Replay</div>
+                                            <small class="feature-description">Rewind markets and watch with user-defined speed and resolution</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="feature-item">
+                                        <div class="feature-icon-wrapper">
+                                            <i class="bi bi-arrows-expand"></i>
+                                        </div>
+                                        <div class="text-content">
+                                            <div class="feature-title">Spreads</div>
+                                            <small class="feature-description">Create your own custom formulas using math</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="feature-item">
+                                        <div class="feature-icon-wrapper">
+                                            <i class="bi bi-clock"></i>
+                                        </div>
+                                        <div class="text-content">
+                                            <div class="feature-title">Custom time intervals</div>
+                                            <small class="feature-description">Any possible timeframe, including seconds and range bars</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="main-content-section">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-6 mb-4 mb-lg-0">
+                                    <h3 class="text-center" style="color: #fff;">Technical analysis, done right</h3>
+                                    <p class="" style="color: #fff;">Our platform comes with hundreds of pre-built studies, 50+ intelligent drawing tools and a set of tools for in-depth market analysis, covering the most popular trading concepts.</p>
+                                    <ul class="feature-list">
+                                        <li class="feature-list-item"><i class="bi bi-check-circle-fill"></i><span>100+ pre-built most popular indicators</span></li>
+                                        <li class="feature-list-item"><i class="bi bi-check-circle-fill"></i><span>100,000+ community-built indicators</span></li>
+                                        <li class="feature-list-item"><i class="bi bi-check-circle-fill"></i><span>50+ smart drawing tools</span></li>
+                                        <li class="feature-list-item"><i class="bi bi-check-circle-fill"></i><span>Volume Profile indicators</span></li>
+                                        <li class="feature-list-item"><i class="bi bi-check-circle-fill"></i><span>Candlestick patterns recognition</span></li>
+                                        <li class="feature-list-item"><i class="bi bi-check-circle-fill"></i><span>Multi-timeframe analysis</span></li>
+                                    </ul>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="chart-image-container">
+                                        <img src="{{ url_for('static', filename='image/tech.png') }}" alt="Advanced Technical Analysis Chart Interface" class="img-fluid chart-image">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="top-section text-center text-md-start">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <h1 class="mb-4">Start building more wealth.</h1>
+                <p class="mb-5 mx-auto mx-md-0">Trusted Minner builds your savings faster, earning you more interest. Set your own pace week by week, Trusted Minner delivers your goals. Automatically.</p>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-5">
+            <div class="col-6 col-md-3">
+                <div class="statistic-item">250M+</div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="statistic-item">90%</div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="statistic-item">131M+</div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="statistic-item border-0">35M+</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="middle-section text-center text-md-start">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6 mb-4 mb-md-0">
+                <h2 class="mb-3">Connect to global capital markets</h2>
+            </div>
+            <div class="col-md-6">
+                <p class="mb-0">Access 40,000+ trading instruments and professional asset management on award-winning platforms.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bottom-section">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3 justify-content-center">
+            <div class="col">
+                <div class="stock-ticker-card">
+                    <img src="https://placehold.co/30x30/0078D4/ffffff?text=MS" alt="Microsoft Logo">
+                    <span class="fw-bold me-1">Microsoft</span>
+                    <span class="price">205.37</span>
+                    <span class="change down"><i class="bi bi-arrow-down"></i></span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="stock-ticker-card">
+                    <img src="https://placehold.co/30x30/1877F2/ffffff?text=FB" alt="Facebook Logo">
+                    <span class="fw-bold me-1">facebook</span>
+                    <span class="price">267.97</span>
+                    <span class="change up"><i class="bi bi-arrow-up"></i></span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="stock-ticker-card">
+                    <img src="https://placehold.co/30x30/E60012/ffffff?text=NI" alt="Nintendo Logo">
+                    <span class="fw-bold me-1">(Nintendo)</span>
+                    <span class="price">59,230</span>
+                    <span class="change up"><i class="bi bi-arrow-up"></i></span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="stock-ticker-card">
+                    <img src="https://placehold.co/30x30/000/ffffff?text=AMD" alt="AMD Logo">
+                    <span class="fw-bold me-1">AMD</span>
+                    <span class="price">78.98</span>
+                    <span class="change up"><i class="bi bi-arrow-up"></i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="{{ url_for('static', filename='lpagestyle/lpage.js') }}"></script>
+{% endblock %}

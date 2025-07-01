@@ -1,0 +1,388 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+}
+
+.card-custom {
+    background-color: #ffffff;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.header-section {
+    padding-bottom: 2rem;
+}
+
+.header-title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 600;
+    color: #4b3f72;
+    margin-bottom: 1rem;
+}
+
+.deposit-summary-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding: 1.5rem;
+}
+
+.deposit-summary-card-content {
+    display: flex;
+    align-items: center;
+}
+
+.deposit-summary-card-icon {
+    font-size: 2.5rem;
+    color: #9e9e9e;
+    margin-right: 1rem;
+}
+
+.deposit-summary-card-amount {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #343a40;
+    line-height: 1;
+}
+
+.deposit-summary-card-label {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-top: 0.25rem;
+}
+
+.deposit-summary-card .badge-top-right {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    padding: 0.35em 0.65em;
+    border-radius: 0.3rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.badge-active {
+    background-color: #e3f2fd;
+    color: #2196f3;
+}
+
+.badge-inactive {
+    background-color: #f3e5f5;
+    color: #9c27b0;
+}
+
+.no-transactions-section {
+    background-color: #ffffff;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    padding: 3rem 1.5rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.no-transactions-illustration {
+    width: 150px;
+    height: 150px;
+    background-color: #fce4ec;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.no-transactions-illustration .document-icon {
+    font-size: 5rem;
+    color: #e91e63;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.no-transactions-illustration .magnifying-glass-icon {
+    font-size: 3rem;
+    color: #ff4081;
+    background-color: #ffffff;
+    border-radius: 50%;
+    padding: 0.5rem;
+    position: absolute;
+    bottom: -15px;
+    right: -15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+
+.no-transactions-illustration .question-mark {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    background-color: #f44336;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    z-index: 3;
+    line-height: 1;
+}
+
+.no-transactions-text {
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    font-weight: 500;
+    color: #616161;
+}
+
+.transactions-table-section {
+    background-color: #ffffff;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
+
+.transactions-table {
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.transactions-table thead th {
+    background-color: #f0f2f5;
+    color: #4b3f72;
+    font-weight: 600;
+    border-bottom: 2px solid #e0e0e0;
+    padding: 0.75rem 1rem;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.transactions-table tbody td {
+    padding: 0.75rem 1rem;
+    vertical-align: middle;
+    border-bottom: 1px solid #f0f0f0;
+    text-align: center;
+}
+
+.transactions-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.transactions-table .no-data-row td {
+    font-style: italic;
+    color: #6c757d;
+    padding: 2rem 1rem;
+}
+
+.transactions-table .view-receipt-btn {
+    background-color: #0d6efd;
+    color: #ffffff;
+    border: none;
+    border-radius: 0.3rem;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.transactions-table .view-receipt-btn:hover {
+    background-color: #0b5ed7;
+}
+
+.status-badge {
+    font-weight: 600;
+    padding: 0.2em 0.6em;
+    border-radius: 0.25rem;
+    display: inline-block;
+    min-width: 65px;
+}
+
+.status-pending {
+    background-color: #fff3e0;
+    color: #fb8c00;
+}
+
+.status-failed {
+    background-color: #ffe0b2;
+    color: #d32f2f;
+}
+
+.status-success {
+    background-color: #e8f5e9;
+    color: #43a047;
+}
+
+.status-cancelled {
+    background-color: #eceff1;
+    color: #78909c;
+}
+
+.filter-box {
+    background-color: #ffffff;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.filter-box .form-label {
+    font-weight: 500;
+    color: #4b3f72;
+    margin-bottom: 0.5rem;
+}
+
+.filter-box .form-control,
+.filter-box .form-select {
+    border-radius: 0.5rem;
+    border: 1px solid #e0e0e0;
+    padding: 0.75rem 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+}
+
+.filter-box .form-control:focus,
+.filter-box .form-select:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.filter-box .btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+}
+
+.filter-box .btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0b5ed7;
+}
+
+@media (max-width: 767.98px) {
+    .header-title {
+        font-size: 1.5rem;
+    }
+
+    .deposit-summary-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .deposit-summary-card-content {
+        margin-bottom: 0.5rem;
+    }
+
+    .deposit-summary-card-icon {
+        font-size: 2rem;
+    }
+
+    .deposit-summary-card-amount {
+        font-size: 1.6rem;
+    }
+
+    .deposit-summary-card-label {
+        font-size: 0.8rem;
+    }
+
+    .deposit-summary-card .badge-top-right {
+        position: static;
+        margin-top: 0.5rem;
+    }
+
+    .no-transactions-section {
+        padding: 2rem 1rem;
+    }
+
+    .no-transactions-illustration {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 1.5rem;
+    }
+
+    .no-transactions-illustration .document-icon {
+        font-size: 4rem;
+    }
+
+    .no-transactions-illustration .magnifying-glass-icon {
+        font-size: 2.5rem;
+        bottom: -10px;
+        right: -10px;
+    }
+
+    .no-transactions-illustration .question-mark {
+        font-size: 3rem;
+        width: 45px;
+        height: 45px;
+    }
+
+    .no-transactions-text {
+        font-size: 1rem;
+    }
+
+    .transactions-table-section {
+        padding: 1rem;
+    }
+
+    .filter-box {
+        padding: 1rem;
+    }
+}
+
+.filter-tag {
+    display: inline-flex;
+    align-items: center;
+    background-color: #e9ecef;
+    border-radius: 0.3rem;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #343a40;
+}
+
+.filter-tag .clear-filter-btn {
+    background: none;
+    border: none;
+    color: #6c757d;
+    font-size: 0.9rem;
+    margin-left: 0.5rem;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    transition: color 0.2s ease-in-out;
+}
+
+.filter-tag .clear-filter-btn:hover {
+    color: #dc3545;
+}
+
+.clear-all-filters-btn {
+    background-color: transparent;
+    border: 1px solid #6c757d;
+    color: #6c757d;
+    border-radius: 0.3rem;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+}
+
+.clear-all-filters-btn:hover {
+    background-color: #f8f9fa;
+    color: #495057;
+    border-color: #495057;
+}

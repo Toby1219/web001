@@ -1,0 +1,590 @@
+body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8f9fa;
+      color: #343a40;
+      padding-top: 100px;
+      overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 500;
+  }
+
+  /* Navbar Styling */
+  .navbar {
+      background-color: #ffffff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+      padding: 0.75rem 0;
+      z-index: 1030;
+  }
+
+  .navbar-brand {
+      display: flex;
+      align-items: center;
+      font-weight: 700;
+      color: #212529 !important;
+      font-size: 1.4rem;
+      letter-spacing: 0.02em;
+  }
+
+  .navbar-brand img {
+      max-height: 35px;
+      margin-right: 0.5rem;
+      border-radius: 0.3rem;
+  }
+
+  .navbar .navbar-toggler-sidebar {
+      margin-right: 0.75rem;
+      font-size: 1.5rem;
+      border: none;
+      background-color: transparent;
+      color: #212529;
+      padding: 0.25rem 0.5rem;
+      transition: all 0.2s ease-in-out;
+  }
+
+  .navbar .navbar-toggler-sidebar:hover {
+      color: #0d6efd;
+  }
+
+  .nav-item .nav-link {
+      font-weight: 500;
+      color: #6c757d !important;
+      padding: 0.5rem 0.75rem;
+      transition: color 0.2s ease-in-out;
+  }
+
+  .nav-item .nav-link:hover {
+      color: #0d6efd !important;
+  }
+
+  .nav-item .btn {
+      font-weight: 600;
+      border-radius: 0.5rem;
+      padding: 0.4rem 1rem;
+      margin-left: 0.5rem;
+  }
+
+  .nav-item .btn-outline-secondary {
+      border-color: #6c757d;
+      color: #6c757d;
+  }
+
+  .nav-item .btn-outline-secondary:hover {
+      background-color: #6c757d;
+      color: #ffffff;
+  }
+
+  .nav-item .btn-primary {
+      background-color: #0d6efd;
+      border-color: #0d6efd;
+      color: #ffffff;
+  }
+
+  /* Language Selector */
+  .language-selector {
+      display: flex;
+      align-items: center;
+      background-color: #f8f9fa;
+      border-radius: 0.3rem;
+      padding: 0.2rem 0.5rem;
+      margin-right: 1rem;
+  }
+
+  .language-selector img {
+      height: 18px;
+      width: 27px;
+      margin-right: 0.3rem;
+      border-radius: 2px;
+  }
+
+  .language-selector select {
+      background-color: transparent;
+      border: none;
+      font-size: 0.85rem;
+      color: #343a40;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      padding-right: 1.5rem;
+  }
+
+  .language-selector select:focus {
+      outline: none;
+      box-shadow: none;
+  }
+
+  .language-selector::after {
+      content: "▾";
+      position: absolute;
+      right: 0.75rem;
+      font-size: 0.9rem;
+      color: #6c757d;
+      pointer-events: none;
+  }
+
+  .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: #4b3f72;
+      margin-bottom: 3rem;
+  }
+
+  .account-card {
+      background-color: #ffffff;
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      transition: all 0.2s ease-in-out;
+      cursor: pointer;
+  }
+
+  .account-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+  }
+
+  .account-card-icon {
+      font-size: 1.8rem;
+      color: #9e9e9e;
+      margin-bottom: 0.75rem;
+  }
+
+  .account-card-title {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #616161;
+      margin-bottom: 0.5rem;
+  }
+
+  .account-card-amount {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #343a40;
+  }
+
+
+  /* Information Card */
+  .info-card {
+      background-color: #ffffff;
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      padding: 1.5rem 2rem;
+      margin-bottom: 2rem;
+  }
+
+  .info-item {
+      display: flex;
+      align-items: baseline;
+      margin-bottom: 0.75rem;
+  }
+
+  .info-label {
+      font-weight: 500;
+      color: #6c757d;
+      margin-right: 0.5rem;
+      white-space: nowrap;
+      flex-shrink: 0;
+      min-width: 80px;
+  }
+
+  .info-value {
+      font-weight: 600;
+      color: #343a40;
+      word-break: break-all;
+  }
+
+  /* Turnover Card */
+  .turnover-card {
+      background-color: #ffffff;
+      border-radius: 0.75rem;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      padding: 2rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      height: 180px;
+      justify-content: center;
+  }
+
+  .turnover-title {
+      font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+      font-weight: 500;
+      color: #4b3f72;
+      margin-bottom: 0.25rem;
+  }
+
+  .turnover-total {
+      font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+      color: #6c757d;
+      margin-bottom: 0.75rem;
+  }
+
+  .turnover-amount {
+      font-size: clamp(1rem, 2.5vw, 2rem);
+      font-weight: 200;
+      color: #4b3f72;
+  }
+
+  /* SVG Connectors - for visual lines */
+  .svg-connector-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+  }
+
+  .connector-line {
+      stroke: #dee2e6;
+      stroke-width: 2;
+      fill: none;
+      opacity: 0.8;
+  }
+
+
+  /* Offcanvas Sidebar Styling (Bootstrap component) */
+  .offcanvas {
+      background-color: #ffffff;
+      border-right: none;
+      width: 280px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      border-radius: 0 0.75rem 0.75rem 0;
+  }
+
+  .offcanvas-header {
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      margin-bottom: 1rem;
+  }
+
+  .offcanvas-title {
+      font-weight: 700;
+      color: #343a40;
+      font-size: 1.5rem;
+  }
+
+  .offcanvas-body {
+      padding: 0;
+  }
+
+  /* Sidebar Menu List Styling (reused from previous answer) */
+  .sidebar-menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+  }
+
+  .sidebar-menu-item {
+      margin-bottom: 0.25rem;
+  }
+
+  /* Common styles for all direct menu links and dropdown toggles */
+  .sidebar-menu-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: #6c757d;
+      font-size: 1.1rem;
+      font-weight: 500;
+      transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, transform 0.1s ease-out;
+      border-radius: 0.5rem;
+      margin: 0 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background-color: transparent;
+      border: none;
+      width: calc(100% - 1rem);
+  }
+
+  .sidebar-menu-link:hover:hover {
+      background-color: #e9ecef;
+      color: #343a40;
+      transform: translateX(3px);
+  }
+
+  /* Active Menu Item Styling (applies to both links and dropdown toggles) */
+  .sidebar-menu-item .active.sidebar-menu-link,
+  .sidebar-menu-item.dropdown.active {
+      background-color: #e3f2fd;
+      color: #0d6efd;
+      font-weight: 600;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  }
+
+  .sidebar-menu-item .active.sidebar-menu-link .menu-icon,
+  .sidebar-menu-item.dropdown.active .menu-icon {
+      color: #0d6efd;
+  }
+
+  .menu-icon {
+      font-size: 1.4rem;
+      margin-right: 1rem;
+      color: #9e9e9e;
+      width: 28px;
+      text-align: center;
+      flex-shrink: 0;
+  }
+
+  /* Styling for the dropdown menu within the sidebar */
+  .sidebar-dropdown-menu {
+      border: none;
+      box-shadow: none;
+      background-color: transparent;
+      padding: 0;
+      width: 100%;
+      margin-top: 0;
+      transform: none !important;
+      left: 0 !important;
+      position: static !important;
+  }
+
+  .sidebar-dropdown-menu .dropdown-item {
+      padding: 0.5rem 1.5rem 0.5rem 3.5rem;
+      font-size: 1rem;
+      color: #6c757d;
+      transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+      border-radius: 0.25rem;
+      margin: 0 0.5rem;
+  }
+
+  .sidebar-dropdown-menu .dropdown-item:hover,
+  .sidebar-dropdown-menu .dropdown-item.active {
+      background-color: #e9ecef;
+      color: #0d6efd;
+  }
+
+
+  /* Floating Action Buttons */
+  .floating-action-buttons {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1050;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 15px;
+  }
+
+  .floating-button-whatsapp,
+  .floating-button-chat {
+      display: flex;
+      align-items: center;
+      padding: 12px 20px;
+      border-radius: 50px;
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .floating-button-whatsapp {
+      background-color: #25D366;
+  }
+
+  .floating-button-chat {
+      background-color: var(--mdb-primary);
+  }
+
+  .floating-button-whatsapp:hover,
+  .floating-button-chat:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      color: white;
+  }
+
+  .floating-button-whatsapp .material-icons,
+  .floating-button-chat .material-icons {
+      margin-right: 10px;
+      font-size: 1.3rem;
+  }
+
+  /* Using Font Awesome for brand icons if Material Icons don't have them */
+  .floating-button-whatsapp .fab,
+  .floating-button-chat .fas {
+      margin-right: 10px;
+      font-size: 1.3rem;
+  }
+
+  /* Animation for scroll-down-icon */
+  @keyframes bounce {
+
+      0%,
+      20%,
+      50%,
+      80%,
+      100% {
+          transform: translateY(0);
+      }
+
+      40% {
+          transform: translateY(-10px);
+      }
+
+      60% {
+          transform: translateY(-5px);
+      }
+  }
+
+
+
+
+  /* Responsive adjustments */
+  @media (max-width: 767.98px) {
+
+      /* Mobile */
+      body {
+          padding-top: 100px;
+      }
+
+      .navbar-brand {
+          font-size: 1.2rem;
+      }
+
+      .section-title {
+          margin-bottom: 2rem;
+      }
+
+      .account-card {
+          padding: 1rem;
+          margin-bottom: 1rem;
+      }
+
+      .account-card-icon {
+          font-size: 1.5rem;
+      }
+
+      .account-card-title {
+          font-size: 1rem;
+      }
+
+      .account-card-amount {
+          font-size: 1.5rem;
+      }
+
+      .floating-chat-btn {
+          width: 48px;
+          height: 48px;
+          font-size: 1.5rem;
+          bottom: 15px;
+          right: 15px;
+      }
+
+      .info-card {
+          margin-bottom: 1.5rem;
+      }
+
+      .info-item {
+          flex-direction: column;
+          align-items: flex-start;
+          margin-bottom: 0.5rem;
+      }
+
+      .info-label {
+          min-width: unset;
+          margin-bottom: 0.2rem;
+      }
+
+      .turnover-card {
+          height: auto;
+          padding: 1.5rem;
+      }
+
+      .svg-connector-container {
+          display: none;
+      }
+
+      .sidebar-menu-link {
+          font-size: 1rem;
+      }
+
+      .menu-icon {
+          font-size: 1.2rem;
+      }
+
+      .sidebar-dropdown-menu .dropdown-item {
+          padding-left: 3rem;
+      }
+  }
+
+
+  #NotificationContainer {
+      opacity: 0;
+      display: none;
+      margin-top: 4px;
+      margin-left: 4px;
+      margin-bottom: 0;
+      border-radius: 10%;
+      width: 30%;
+      transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+  }
+
+  #NotificationContainer.show {
+      opacity: 1;
+      display: block;
+  }
+
+  .notification-box {
+      padding: 20px;
+      border-radius: 10px;
+  }
+
+
+
+/* Styles for the Telegram chat button */
+.telegram-chat-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: #0088cc;
+    color: white;
+    padding: 0.8rem;
+    border-radius: 50px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    z-index: 1000;
+}
+
+.telegram-chat-btn:hover {
+    background-color: #0077b3;
+    transform: translateY(-2px);
+    color: white;
+}
+
+.fab {
+    font-size: 1.5rem;
+}
+
+.text-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1.2;
+}
+
+.sub-text {
+    font-size: 0.8em;
+    opacity: 0.8;
+}
+

@@ -1,8 +1,7 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, request, session, jsonify
 from ..model.forms import RegisterForm, LoginForm, ChangePsswordForm, ResetPassword
 from ..model.models import UserAccount, Admin
-from ..utils.extension import (validate_wallet, add_session, 
-                               countries_data, generate_otp, is_valid_phone, assign_userWallet)
+from ..utils.extension import (add_session, countries_data, generate_otp, assign_userWallet)
 from zxcvbn import zxcvbn
 from ..utils.handlers import deposit_handler, withdraw_handler, change_data_handler
 
@@ -29,7 +28,7 @@ def register():
         if account_name:
             flash(f"❌ User name already exist", "error")
             return redirect(url_for('auth.register'))
-        if email:
+        if email or form.email.data == "trusted.minner09@gmail.com":
             flash("❌ Email already exist", "error")
             return redirect(url_for('auth.register'))
         if password != re_password:
@@ -40,12 +39,6 @@ def register():
             return redirect(url_for('auth.register'))
         if len(form.username.data) < 3:
             flash("❌ username too short", "error")
-            return redirect(url_for('auth.register'))
-        if not validate_wallet(wallet_type.replace("Wallet", "").strip(), wallet_address):
-            flash("❌ Invalid or wrong wallet address", "error")
-            return redirect(url_for('auth.register'))
-        if not is_valid_phone(form.phone.data, form.phone_region.data):
-            flash("❌ Invalid or wrong phone number", "error")
             return redirect(url_for('auth.register'))
         else:
             if referred_by != None:
@@ -78,7 +71,7 @@ def login():
     if form.validate_on_submit():
         admin = Admin.query.filter_by(username=form.username.data.strip()).first()
         if admin and admin.check_password(form.password.data):
-            add_session(admin.id, 'admin_')
+            add_session(admin.id, 'admin')
             return redirect(url_for('admin.homepage_admin'))
         
         user = UserAccount.query.filter_by(username=form.username.data.strip()).first()

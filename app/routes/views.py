@@ -142,7 +142,8 @@ def transaction():
         transactions = filter_transactions(date_from, date_to, status, ttype)
     if request.method == "GET":
         t_schema = query_db_many(Transactions, TransactionSchema, g.user.username)
-        return render_template("user_account/transac.html", webs=webs, data=data,  transaction=sorted(t_schema, key=lambda x: datetime.strptime(f"{x['date']} {x['time']}", "%Y-%m-%d %H:%M"), reverse=True)), 200
+        sorted_results = sorted(t_schema, key=lambda x: datetime.strptime(f"{x['date']} {x['time'].replace("am", "").replace("pm", "").strip()}", "%Y-%m-%d %H:%M"), reverse=True)
+        return render_template("user_account/transac.html", webs=webs, data=data,  transaction=sorted_results), 200
     return render_template("user_account/transac.html", data=data,  transaction=transactions, webs=webs), 200
 
 @view_bp.route('/user-account/setting', methods=['GET', 'POST'])

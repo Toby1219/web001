@@ -2,8 +2,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const transactionsTableBody = document.querySelector('.transactions-table');
     const receiptModal = new bootstrap.Modal(document.getElementById('receiptModal'));
     const receiptIdSpan = document.getElementById('receiptId');
-    const receiptTimeSpan = document.getElementById('receiptTime');
-    const receiptDateSpan = document.getElementById('receiptDate');
+    const receiptTime = document.getElementById('receiptTime');
+    const receiptDate = document.getElementById('receiptDate');
+    
     const receiptAmountSpan = document.getElementById('receiptAmount');
     const receiptPlanSpan = document.getElementById('receiptPlan');
     const receiptWTSpan = document.getElementById('receiptWalletType');
@@ -49,7 +50,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     'amt':receiptAmountSpan.value,
                     'r':newRemarkText.value,
                     'tt':transact,
-                    'ac':'success' 
+                    'ac':'success',
+                    'time':receiptTime.value,
+                    'date':receiptDate.value,
                 }
                 fetch(`${window.location.origin}/admin/update`, {
                     method: "POST",
@@ -118,7 +121,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     'amt':receiptAmountSpan.value,
                     'r':newRemarkText.value,
                     'tt':transact,
-                    'ac':'failed' 
+                    'ac':'failed',
+                    'time':receiptTime.value,
+                    'date':receiptDate.value, 
                 }
                 fetch(`${window.location.origin}/admin/update`, {
                     method: "POST",
@@ -151,21 +156,19 @@ document.addEventListener('DOMContentLoaded', function () {
     transactionsTableBody.addEventListener('click', function (event) {
         if (event.target) {
             const row = event.target.closest('tr');
-            let status_ = row.querySelector('.status-badge').textContent
-            console.log("Make Api call")
             if (row) {
                 receiptIdSpan.textContent = row.dataset.id;
-                receiptTimeSpan.textContent = row.dataset.time;
-                receiptDateSpan.textContent = row.dataset.date;
+                receiptTime.value = row.dataset.time 
+                receiptDate.value = row.dataset.date;
                 receiptAmountSpan.value = row.dataset.amount;
-                receiptPlanSpan.value = row.dataset.plan
-                receiptWTSpan.textContent = row.dataset.wt
-                receiptWASpan.textContent = row.dataset.wa
-                receiptTOSpan.textContent = row.dataset.to
+                receiptPlanSpan.value = row.dataset.plan;
+                receiptWTSpan.textContent = row.dataset.wt;
+                receiptWASpan.textContent = row.dataset.wa;
+                receiptTOSpan.textContent = row.dataset.to;
                 receiptStatusSpan.textContent = row.querySelector('.status-badge').textContent;
-                receiptTTSpan.textContent = row.dataset.tt
-                remark.textContent = row.dataset.r
-                name.textContent = row.dataset.name
+                receiptTTSpan.textContent = row.dataset.tt;
+                remark.textContent = row.dataset.r;
+                name.textContent = row.dataset.name;
 
                 receiptModal.show();
             }

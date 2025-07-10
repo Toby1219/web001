@@ -20,18 +20,17 @@ Users
                         <th>Balance</th>
                         <th>Referral count</th>
                         <th>Referral Code</th>
-                        <th>Time  <br>------<br> Date</th>
+                        <th>Time <br>------<br> Date</th>
                     </tr>
                 </thead>
                 {% for tx in data %}
                 <tbody>
-                    <tr data-id="{{tx['id']}}" data-time="{{tx['time']}}" data-date="{{tx['date']}}" 
-                        data-balnce="{{tx['balance']}}" data-wa="{{tx['WalletAddress']}}" 
-                        data-wt="{{tx['WalletType']}}" data-refcount="{{tx['ref_count']}}"
-                        data-refcode="{{tx['referral_code']}}" data-refby="{{tx['ref_by']}}"
-                        data-enarned="{{tx['earned']}}" data-invest="{{tx['invested']}}" 
-                        data-status="Active Trans status" data-name="{{tx['username']}}" 
-                        data-email="{{tx['email']}}" data-phone="{{tx['phone']}}">
+                    <tr data-id="{{tx['id']}}" data-time="{{tx['time']}}" data-date="{{tx['date']}}"
+                        data-balnce="{{tx['balance']}}" data-wa="{{tx['WalletAddress']}}" data-wt="{{tx['WalletType']}}"
+                        data-refcount="{{tx['ref_count']}}" data-refcode="{{tx['referral_code']}}"
+                        data-refby="{{tx['ref_by']}}" data-enarned="{{tx['earned']}}" data-invest="{{tx['invested']}}"
+                        data-status="Active Trans status" data-name="{{tx['username']}}" data-email="{{tx['email']}}"
+                        data-phone="{{tx['phone']}}">
                         <td>{{tx['username']}}</td>
                         <td colspan="1">USD {{tx['invested']}} <br>-----<br> USD {{tx['withdrawn']}}</td>
                         <td>USD {{tx['balance']}}</td>
@@ -54,7 +53,7 @@ Users
         <p class="no-transactions-text">No Users can be found</p>
     </section>
     {% endif %}
-    </div>
+
 </main>
 <div class="modal fade" id="userEditModal" tabindex="-1" aria-labelledby="userEditModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -68,7 +67,8 @@ Users
                     <div class="user-edit-form-grid">
                         <div class="form-group">
                             <label for="editUserNameInput">Name:</label>
-                            <input type="text" class="form-control" id="editUserNameInput" name="username" readonly disabled>
+                            <input type="text" class="form-control" id="editUserNameInput" name="username" readonly
+                                disabled>
                         </div>
                         <div class="form-group">
                             <label for="editUserEmail">Email:</label>
@@ -99,20 +99,31 @@ Users
                             <input type="text" class="form-control" id="editUserPending" name="pending" required>
                         </div>
                         <div class="form-group">
+                            <label for="editUserPendingT">Time (recent):</label>
+                            <input type="text" class="form-control" id="editUserPendingT" name="pendingT" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editUserPendingD">Date (recent):</label>
+                            <input type="text" class="form-control" id="editUserPendingD" name="pendingD" required>
+                        </div>
+                        <div class="form-group">
                             <label for="editUserPlan"> Active Plan:</label>
                             <input type="text" class="form-control" id="editUserPlan" name="activeplan" required>
                         </div>
                         <div class="form-group">
                             <label for="editUserWalletAddress"> Wallet Address:</label>
-                            <input type="text" class="form-control" id="editUserWalletAddress" name="userwallet" required>
+                            <input type="text" class="form-control" id="editUserWalletAddress" name="userwallet"
+                                required>
                         </div>
                         <div class="form-group">
                             <label for="editUserWalletType"> Wallet Type:</label>
-                            <input type="text" class="form-control" id="editUserWalletType" name="userwallettype" required>
+                            <input type="text" class="form-control" id="editUserWalletType" name="userwallettype"
+                                required>
                         </div>
                         <div class="form-group">
                             <label for="editUserRefEarnings"> Referral Earnings:</label>
-                            <input type="text" class="form-control" id="editUserRefEarnings" name="userrefearns" required>
+                            <input type="text" class="form-control" id="editUserRefEarnings" name="userrefearns"
+                                required>
                         </div>
                         <div class="form-group">
                             <label for="editUserReferralCount">Referral Count:</label>
@@ -127,20 +138,15 @@ Users
                             <input type="text" class="form-control" id="editUserReferralCode" readonly disabled>
                         </div>
                         <div class="form-group">
-                            <label for="editUserID" class="d-none">Id</label>
-                            <input type="text" class="form-control d-none" id="editUserID"  name="id" readonly disabled>
+                            <label for="editUserID" class="">Id</label>
+                            <input type="text" class="form-control " id="editUserID" name="id" readonly disabled>
                         </div>
-                        <div class="form-group">
-                            <label for="editUserID" class="d-none">Id</label>
-                            <input type="text" class="form-control d-none" id="editUserID"  name="id" readonly disabled>
-                        </div>
-                        <div class="form-group">
-                            <label for="editU" class="d-none"></label>
-                            <input type="text" class="form-control d-none" id="editU"  name="id" readonly disabled>
-                        </div>
+
+
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary p-1 w-50" id="SaveBtn">Save Changes</button>
                         </div>
+
                         <div class="form-group">
                             <p class="text-bg-warning small" id="totalTransac"></p>
                             <p class="text">Take Action for transaction</p>
@@ -155,7 +161,8 @@ Users
         </div>
     </div>
 </div>
-<div class="modal fade" id="confirmChangesModal" tabindex="-1" aria-labelledby="confirmChangesModalLabel" aria-hidden="true">
+<div class="modal fade" id="confirmChangesModal" tabindex="-1" aria-labelledby="confirmChangesModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -175,6 +182,3 @@ Users
 </div>
 <script type="text/javascript" src="{{ url_for('static', filename='admin/user.js') }}"></script>
 {% endblock %}
-
-
-

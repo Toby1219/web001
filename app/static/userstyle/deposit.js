@@ -124,12 +124,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
         setTimeout(() => {
             paymentConfirmedModal.hide();
-            post_request()
+            post_request();
             location.reload();
-            
         }, 2000);
     });
 
     updateProceedButtonState();
     hideAmountFeedback();
+
 });

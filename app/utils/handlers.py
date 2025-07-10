@@ -202,7 +202,7 @@ def get_totalPending():
     return total_user, total_p_w, total_p_d
 
     
-def update_db_handler(action, id_, remark, tt, amt):
+def update_db_handler(action, id_, remark, tt, amt, t, d):
     trans = Transactions.query.filter_by(id=id_).first()
     user = UserAccount.query.filter_by(username=trans.username).first()
     admin_ = Admin.query.filter_by(username=Config.ADMIN_NAME).first()
@@ -226,7 +226,9 @@ def update_db_handler(action, id_, remark, tt, amt):
             balance = "{:,.2f}".format(float(admin_.balance.replace(",", "")) + float(amt.replace(",", "").replace("USD", "").strip()))
             
             trans.time_counter = json.dumps({'time': f'{datetime.now().time().strftime('%H:%M')}', 'date': f'{datetime.now().date()}'})
-            
+        
+        trans.time = t
+        trans.date = d   
         trans.create_transaction()
         user.create_user()
         admin_.update_allowed_fields(balance=balance)
@@ -240,6 +242,9 @@ def update_db_handler(action, id_, remark, tt, amt):
                 user.active_deposits ="0.00"
             else:
                 user.active_deposits = "{:,.2f}".format(na)
+                
+        trans.time = t
+        trans.date = d  
         trans.remark = remark
         trans.status =  "Failed"
         trans.ammount = amt

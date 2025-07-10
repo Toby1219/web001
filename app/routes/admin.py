@@ -44,13 +44,13 @@ def admin_transac():
         date_to = request.form.get("to")
         status = request.form.get("status")
         ttype = request.form.get("ttype")
-
         transactions = filter_transactions(date_from, date_to, status, ttype)
     if request.method == "GET":
         p_transaction = Transactions.query.all()
         p_transactionSchema  = TransactionSchema(many=True).dump(p_transaction)
         result = [s for s in p_transactionSchema]
-        sorted_results = sorted(result, key=lambda x: datetime.strptime(f"{x['date']} {x['time']}", "%Y-%m-%d %H:%M"), reverse=True)
+        print("\n", result, "\n")
+        sorted_results = sorted(result, key=lambda x: datetime.strptime(f"{x['date'].strip()} {x['time'].replace("am", "").replace("pm", "").strip()}", "%Y-%m-%d %H:%M"), reverse=True)
         return render_template("admin/admin.html", user=user[0], data=data, transaction=sorted_results,  total=[total_user, total_p_w, total_p_d]), 200
 
     return render_template("admin/transh.html", user=user[0], data=data, transaction=transactions), 200
@@ -85,14 +85,14 @@ def pending_admin():
         p_transaction = Transactions.query.all()
         p_transactionSchema  = TransactionSchema(many=True).dump(p_transaction)
         result = [s for s in p_transactionSchema if s['status'].lower() == 'pending' and s['transac_type'] == 'withdraw']
-        sorted_results = sorted(result, key=lambda x: datetime.strptime(f"{x['date']} {x['time']}", "%Y-%m-%d %H:%M"), reverse=True)
+        sorted_results = sorted(result, key=lambda x: datetime.strptime(f"{x['date']} {x['time'].replace("am", "").replace("pm", "").strip()}", "%Y-%m-%d %H:%M"), reverse=True)
         
         return render_template("admin/admin.html", user=user[0], transaction=sorted_results, total=[total_user, total_p_w, total_p_d]), 200
     if pending == 'd':    
         p_transaction = Transactions.query.all()
         p_transactionSchema  = TransactionSchema(many=True).dump(p_transaction)
         result = [s for s in p_transactionSchema if s['status'].lower() == 'pending' and s['transac_type'] == 'deposit']
-        sorted_results = sorted(result, key=lambda x: datetime.strptime(f"{x['date']} {x['time']}", "%Y-%m-%d %H:%M"), reverse=True)
+        sorted_results = sorted(result, key=lambda x: datetime.strptime(f"{x['date']} {x['time'].replace("am", "").replace("pm", "").strip()}", "%Y-%m-%d %H:%M"), reverse=True)
         return render_template("admin/admin.html", user=user[0], transaction=sorted_results, total=[total_user, total_p_w, total_p_d]), 200
     
     return render_template("admin/admin.html", user=user[0], total=[total_user, total_p_w, total_p_d]), 200
@@ -107,7 +107,9 @@ def update_db():
     tt = data['tt']
     amt = data['amt']
     action = data['ac']
-    update_db_handler(action, id_, remark, tt, amt)
+    time = data['time']
+    date = data['date']
+    update_db_handler(action, id_, remark, tt, amt, time, date)
     return redirect(url_for('admin.pending_admin', p=f'{tt}'))
 
     
@@ -143,12 +145,13 @@ def get_user():
     t = request.args.get('t')
     if t:
         transac = Transactions.query.filter_by(username=t).all()
-        transac_data = TransactionSchema(many=True, only=['id', 'ammount', 'plan', 'status']).dump(transac)
+        transac_data = TransactionSchema(many=True, only=['id', 'ammount', 'plan', 'status', 'time', 'date']).dump(transac)
         user = UserAccount.query.filter_by(username=t).all()
         data = UserAccSchema(many=True).dump(user)
         status_pending = [x for x in transac_data if x['status'] == 'Pending']
+        print(status_pending)
         dat = {
-            'id': transac_data[-1]['id'] if transac_data else "0.00",
+            'id': status_pending[-1]['id'] if status_pending else "-",
             'ammount': status_pending[-1]['ammount'] if status_pending else "0.00",
             'plan': status_pending[-1]['plan'] if status_pending else "-",
             'password': data[0]['paswrd'],
@@ -157,8 +160,10 @@ def get_user():
             'earned': data[0]['earned'],
             'wt': data[0]['walletType'],
             'wa': data[0]['walletAddress'],
-            'ref_earning': data[0]['ref_earings'],
-            'total_transac' : len(transac) if transac else 0
+            'ref_earning': data[0]['ref_earings'] if data[0] else '0',
+            'total_transac' : len(transac) if transac else 0,
+            'time': f"{status_pending[-1]['time'] if status_pending else '-'}",
+            'date': f"{status_pending[-1]['date'] if status_pending else '-'}"
         }
         return jsonify(dat), 200
     return jsonify({"message": "None"}), 200
@@ -173,6 +178,8 @@ def update_user():
     invested = data['invested']
     earned = data['earned']
     pending = data['pending']
+    pendingT = data['time']
+    pendingD = data['date']
     activeplan = data['activeplan']
     user = UserAccount.query.filter_by(username=username).first()
     tran_user = Transactions.query.get(id_)
@@ -186,6 +193,10 @@ def update_user():
         if earned:
             user.earned = "{:,.2f}".format(float(earned.replace(",", "")))
         if tran_user:
+            if pendingT is not None:
+                tran_user.time = pendingT
+            if pendingD is not None:
+                tran_user.date = pendingD
             if pending is not None:
                 user.active_deposits = "{:,.2f}".format(float(pending.replace(",", "")))
                 tran_user.ammount = "{:,.2f}".format(float(pending.replace(",", "")))
@@ -212,7 +223,3 @@ def credit_referral():
             user1.create_user()
             user2.create_user()
     return jsonify({}), 200
-
- 
-    
-    

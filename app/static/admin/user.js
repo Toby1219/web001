@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const editUserPlanSelect = document.getElementById('editUserPlan');
     const editUserReferralCode = document.getElementById('editUserReferralCode');
     const editUserPass = document.getElementById('editUserPasswrd');
+    const editUserPendingT = document.getElementById('editUserPendingT');
+    const editUserPendingD = document.getElementById('editUserPendingD');
     const editUserBalance = document.getElementById('editUserBalance');
     const editUserInvested = document.getElementById('editUserInvested');
     const editUserEarned = document.getElementById('editUserEarned');
@@ -71,6 +73,8 @@ document.addEventListener('DOMContentLoaded', function () {
             editUserEarned.value = await respo['earned'];
             editUserPending.value = await respo['ammount'];
             editUserID.value = await respo['id'];
+            editUserPendingT.value = await respo['time'];
+            editUserPendingD.value = await respo['date'];
             userEditModal.show();
         }
     });
@@ -96,6 +100,8 @@ document.addEventListener('DOMContentLoaded', function () {
             'earned': editUserEarned.value,
             'pending': editUserPending.value,
             'activeplan': editUserPlan.value,
+            'time': editUserPendingT.value,
+            'date': editUserPendingD.value,
         };
         fetch(`${window.location.origin}/admin/udate_user`, {
             method: "POST",

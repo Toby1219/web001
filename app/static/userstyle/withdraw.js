@@ -61,15 +61,15 @@ document.addEventListener('DOMContentLoaded', function () {
             errorModal.show();
             setTimeout(() => {
                 make_payment("f");
-                location.reload()
             }, 2000)
         } else {
             successModal.show();
             setTimeout(() => {
                 make_payment("s");
-                location.reload()
+                location.reload();
             }, 2000)
         }
+ 
     });
 });
 
